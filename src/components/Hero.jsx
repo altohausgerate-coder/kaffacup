@@ -120,14 +120,14 @@ const Hero = () => {
         </h1>
 
         <p
-          className="text-sm sm:text-lg md:text-xl font-light mb-8 sm:mb-10 max-w-[20rem] sm:max-w-md"
+          className="text-sm sm:text-lg md:text-xl font-light mb-5 sm:mb-8 max-w-[20rem] sm:max-w-md"
           style={{ color: 'rgba(255,255,255,0.72)', letterSpacing: 0, lineHeight: 1.65 }}
         >
           {t('hero.subtitle')}
         </p>
 
         <div
-          className="flex w-full max-w-[11rem] flex-col items-stretch justify-center gap-3 mb-10 sm:mb-14 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center"
+          className="mt-16 flex w-full max-w-[11rem] flex-col items-stretch justify-center gap-3 mb-8 sm:mt-12 sm:mb-12 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center"
         >
           {quickLinks.map((link, i) =>
             link.external ? (
