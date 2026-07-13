@@ -1,4 +1,4 @@
-const MENU_IMAGE_VERSION = '20260713-10'
+const MENU_IMAGE_VERSION = '20260713-11'
 
 const LOCAL_IMAGE_OVERRIDES = {
   s1: '/images/food/kaffa-salati.png',
@@ -13,7 +13,7 @@ const LOCAL_IMAGE_OVERRIDES = {
   sw5: '/images/food/et-bagette.png',
   sw6: '/images/food/sendwich-etli.png',
   sw7: '/images/food/cheese-sandwich.png',
-  sw8: '/images/food/kaffa-baggate.png',
+  sw8: '/images/food/sendwich-etli.png',
   sw9: '/images/food/vegeterian-bagette.png',
   d3: '/images/food/kaffa-desert.png',
   d8: '/images/menu/dessert-waffle-shokoladli.png',
