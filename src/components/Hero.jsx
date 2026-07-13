@@ -16,9 +16,14 @@ const steamParticles = [
 
 const Hero = () => {
   const { scrollYProgress } = useScroll()
-  const heroScale   = useTransform(scrollYProgress, [0, 0.35], [1,    0.92])
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.35], [1,    0.5 ])
-  const bgY         = useTransform(scrollYProgress, [0, 0.35], ['0%', '25%'])
+  const heroScale      = useTransform(scrollYProgress, [0, 0.4], [1, 0.96])
+  const bgScale         = useTransform(scrollYProgress, [0, 0.4], [1, 1.18])
+  const bgY             = useTransform(scrollYProgress, [0, 0.4], ['0%', '20%'])
+  const bgBlurAmount    = useTransform(scrollYProgress, [0, 0.4], [0, 6])
+  const bgFilter        = useTransform(bgBlurAmount, (v) => `blur(${v}px)`)
+  const curtainOpacity  = useTransform(scrollYProgress, [0.05, 0.4], [0, 1])
+  const contentOpacity  = useTransform(scrollYProgress, [0, 0.22], [1, 0])
+  const contentY        = useTransform(scrollYProgress, [0, 0.3], [0, -70])
   const { t } = useLang()
   const navigate = useNavigate()
 
@@ -42,13 +47,13 @@ const Hero = () => {
   return (
     <motion.section
       className="relative min-h-[100svh] flex items-center justify-center overflow-hidden grain-overlay"
-      style={{ scale: heroScale, opacity: heroOpacity }}
+      style={{ scale: heroScale }}
     >
       {/* Background */}
       <div className="absolute inset-0">
         <motion.div
           className="w-full h-full bg-cover bg-center"
-          style={{ y: bgY, backgroundImage: `url(${bgUrl})` }}
+          style={{ y: bgY, scale: bgScale, filter: bgFilter, backgroundImage: `url(${bgUrl})` }}
         />
         <div className="absolute inset-0" style={{
           background: 'linear-gradient(to bottom, rgba(10,28,22,0.55) 0%, rgba(20,50,38,0.62) 40%, rgba(8,22,17,0.90) 100%)'
@@ -56,6 +61,8 @@ const Hero = () => {
         <div className="absolute inset-0" style={{
           background: 'radial-gradient(ellipse at center, transparent 40%, rgba(5,15,12,0.55) 100%)'
         }} />
+        {/* Scroll curtain — deepens into the brand color instead of washing out to white, flowing straight into the section below */}
+        <motion.div className="absolute inset-0" style={{ background: '#32534c', opacity: curtainOpacity }} />
       </div>
 
       {/* Steam particles */}
@@ -78,6 +85,10 @@ const Hero = () => {
 
       {/* Content */}
       <div className="absolute inset-x-0 top-1/2 z-10 mx-auto flex w-full max-w-5xl -translate-y-1/2 flex-col items-center text-center px-4">
+      <motion.div
+        className="flex w-full flex-col items-center text-center"
+        style={{ opacity: contentOpacity, y: contentY }}
+      >
 
         <motion.div
           className="mb-5 sm:mb-6"
@@ -177,6 +188,7 @@ const Hero = () => {
             </svg>
           </button>
         </motion.div>
+      </motion.div>
       </div>
     </motion.section>
   )
