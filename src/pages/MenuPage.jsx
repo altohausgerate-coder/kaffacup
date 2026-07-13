@@ -20,6 +20,7 @@ export default function MenuPage({ initialTab = 'all' }) {
   const { setSelectedProduct } = useApp()
   const navigate = useNavigate()
   const location = useLocation()
+  const sections = useMemo(() => getSectionsForTab(activeTab), [activeTab])
 
   useEffect(() => {
     setActiveTab(initialTab)
@@ -40,8 +41,6 @@ export default function MenuPage({ initialTab = 'all' }) {
     const controllers = imgs.map(src => { const img = new Image(); img.decoding = 'async'; img.src = src; return img })
     return () => controllers.forEach(img => { img.src = '' })
   }, [sections])
-
-  const sections = useMemo(() => getSectionsForTab(activeTab), [activeTab])
 
   const renderItems = (items) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
