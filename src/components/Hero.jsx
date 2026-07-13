@@ -110,7 +110,7 @@ const Hero = () => {
         </p>
 
         <h1
-          className="font-heading font-black text-white mb-4 sm:mb-5 leading-[0.92] whitespace-nowrap text-[2.2rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7.5rem]"
+          className="font-display text-white mb-5 leading-none text-[2.45rem] sm:text-[4.75rem] md:text-[6rem] lg:text-[7.5rem]"
           style={{
             letterSpacing: 0,
             textShadow: '0 2px 40px rgba(0,0,0,0.5)',
