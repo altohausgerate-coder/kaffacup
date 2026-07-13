@@ -143,11 +143,14 @@ export const sandwichItems = [
   { id: 'sw1', name: 'Chicken Ceasar Sandwich', nameEn: 'Chicken Caesar Sandwich', nameRu: 'Сэндвич Цезарь с Курицей', desc: 'Tost çörəyi, iceberg, toyuq əti, parmezan, pomidor, yumurta, sezar sousu', descEn: 'Toast bread, iceberg, chicken, parmesan, tomato, egg, Caesar sauce', descRu: 'Тостовый хлеб, айсберг, курица, пармезан, помидор, яйцо, соус Цезарь', price: 4.60, img: 'https://imageproxy.wolt.com/assets/6989a0ad5b01ba0990cc3c2b', category: 'sandwich', available: true },
   { id: 'sw2', name: 'Tuna Sandwich', nameEn: 'Tuna Sandwich', nameRu: 'Сэндвич с Тунцом', desc: 'Tost çörəyi, iceberg, ton balığı, yumurta, qırmızı soğan, mayonez', descEn: 'Toast bread, iceberg, tuna, egg, red onion, mayonnaise', descRu: 'Тостовый хлеб, айсберг, тунец, яйцо, красный лук, майонез', price: 7.20, img: 'https://imageproxy.wolt.com/assets/6989a0ad5b01ba0990cc3c22', category: 'sandwich', available: true },
   { id: 'sw3', name: 'Club Sandwich', nameEn: 'Club Sandwich', nameRu: 'Клаб Сэндвич', desc: 'Tost çörəyi, toyuq əti, vetçina, çedar pendiri, cocktail sousu', descEn: 'Toast bread, chicken, ham, cheddar cheese, cocktail sauce', descRu: 'Тостовый хлеб, курица, ветчина, сыр чеддер, коктейльный соус', price: 8.70, img: 'https://imageproxy.wolt.com/assets/6989a0ae5b01ba0990cc3c36', category: 'sandwich', available: true },
-  { id: 'sw4', name: 'Chicken Bagette', nameEn: 'Chicken Baguette', nameRu: 'Куриный Багет', desc: 'Fransız çörəyi, toyuq əti, iceberg, pomidor, duzlu xiyar, çedar pendiri, karri moya sousu', descEn: 'French bread, chicken, iceberg, tomato, pickled cucumber, cheddar cheese, curry mayo sauce', descRu: 'Французский хлеб, курица, айсберг, помидор, маринованный огурец, сыр чеддер, соус карри-майо', price: 6.20, img: 'https://imageproxy.wolt.com/assets/6989a0ae5b01ba0990cc3c37', category: 'sandwich', available: true },
-  { id: 'sw5', name: 'Meat Bagette', nameEn: 'Meat Baguette', nameRu: 'Мясной Багет', desc: 'Fransız çörəyi, can əti, iceberg, pomidor, duzlu xiyar, çedar pendiri, karri moya sousu', descEn: 'French bread, veal, iceberg, tomato, pickled cucumber, cheddar cheese, curry mayo sauce', descRu: 'Французский хлеб, телятина, айсберг, помидор, маринованный огурец, сыр чеддер, соус карри-майо', price: 9.50, img: 'https://imageproxy.wolt.com/assets/6989a0ae5b01ba0990cc3c3a', category: 'sandwich', available: true },
   { id: 'sw6', name: 'Meat Sandwich', nameEn: 'Meat Sandwich', nameRu: 'Сэндвич с Мясом', desc: 'Tost çörəyi, can əti, iceberg, pomidor, mayonez sousu', descEn: 'Toast bread, veal, iceberg, tomato, mayonnaise sauce', descRu: 'Тостовый хлеб, телятина, айсберг, помидор, майонезный соус', price: 6.70, img: MENU_IMAGES.sandwichMeat, category: 'sandwich', available: true },
   { id: 'sw7', name: 'Cheese Sandwich', nameEn: 'Cheese Sandwich', nameRu: 'Сэндвич с Сыром', desc: 'Tost çörəyi, əridilmiş çedar pendiri', descEn: 'Toast bread, melted cheddar cheese', descRu: 'Тостовый хлеб, расплавленный сыр чеддер', price: 4.10, img: MENU_IMAGES.sandwichCheese, category: 'sandwich', available: true },
   { id: 'sw8', name: 'Kaffa Sandwich', nameEn: 'Kaffa Sandwich', nameRu: 'Сэндвич Kaffa', desc: 'Fransız çörəyi, toyuq əti, çedar pendiri, iceberg, pomidor, karri moya sousu', descEn: 'French bread, chicken, cheddar cheese, iceberg, tomato, curry mayo sauce', descRu: 'Французский хлеб, курица, сыр чеддер, айсберг, помидор, соус карри-майо', price: 8.70, img: MENU_IMAGES.sandwichKaffa, category: 'sandwich', available: true },
+]
+
+export const bagetteItems = [
+  { id: 'sw4', name: 'Chicken Bagette', nameEn: 'Chicken Baguette', nameRu: 'Куриный Багет', desc: 'Fransız çörəyi, toyuq əti, iceberg, pomidor, duzlu xiyar, çedar pendiri, karri moya sousu', descEn: 'French bread, chicken, iceberg, tomato, pickled cucumber, cheddar cheese, curry mayo sauce', descRu: 'Французский хлеб, курица, айсберг, помидор, маринованный огурец, сыр чеддер, соус карри-майо', price: 6.20, img: 'https://imageproxy.wolt.com/assets/6989a0ae5b01ba0990cc3c37', category: 'sandwich', available: true },
+  { id: 'sw5', name: 'Meat Bagette', nameEn: 'Meat Baguette', nameRu: 'Мясной Багет', desc: 'Fransız çörəyi, can əti, iceberg, pomidor, duzlu xiyar, çedar pendiri, karri moya sousu', descEn: 'French bread, veal, iceberg, tomato, pickled cucumber, cheddar cheese, curry mayo sauce', descRu: 'Французский хлеб, телятина, айсберг, помидор, маринованный огурец, сыр чеддер, соус карри-майо', price: 9.50, img: 'https://imageproxy.wolt.com/assets/6989a0ae5b01ba0990cc3c3a', category: 'sandwich', available: true },
   { id: 'sw9', name: 'Vegeterian Bagette', nameEn: 'Vegetarian Baguette', nameRu: 'Вегетарианский Багет', desc: 'Fransız çörəyi, iceberg, pomidor, xiyar, sarı bibər, qırmızı soğan, feta pendiri, pesto sousu', descEn: 'French bread, iceberg, tomato, cucumber, yellow pepper, red onion, feta cheese, pesto sauce', descRu: 'Французский хлеб, айсберг, помидор, огурец, жёлтый перец, красный лук, сыр фета, соус песто', price: 8.20, img: MENU_IMAGES.bagetteVegeterian, category: 'sandwich', available: true },
 ]
 
@@ -312,12 +315,11 @@ export const coffeeBeanItems = [
 
 export const allMenuItems = [
   ...rollsItems, ...saladItems,
-  ...sandwichItems, ...bowlItems, ...dessertItems, ...specialComboItems,
+  ...sandwichItems, ...bagetteItems, ...bowlItems, ...dessertItems, ...specialComboItems,
   ...classicCoffee, ...alternativeCoffee, ...icedCoffee,
   ...lemonadeItems, ...smoothieItems, ...iceTeaItems,
   ...cocktailItems, ...mocktailItems,
   ...milkshakeItems, ...extraBarItems, ...teaItems,
   ...bubbleTeaItems, ...freshItems, ...coffeeBeanItems,
 ]
-
 

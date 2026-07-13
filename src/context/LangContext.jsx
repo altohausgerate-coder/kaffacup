@@ -32,7 +32,7 @@ const translations = {
 
     // Menu
     'menu.title': 'Menyu',
-    'menu.subtitle': 'Bütün məhsullarımızı kəşf edin',
+    'menu.subtitle': 'İçkilərdən yeməklərə hər şey burada olsun',
     'menu.cat.all': 'Hamısı',
     'menu.cat.breakfast': 'Səhər Yeməyi',
     'menu.cat.rolls': 'Rollar',
