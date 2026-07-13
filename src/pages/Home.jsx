@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import MenuSection from '../components/MenuSection'
 import Footer from '../components/Footer'
 import { useLang } from '../context/LangContext'
 import { useCustomerAuth } from '../context/CustomerAuthContext'
@@ -271,8 +270,6 @@ const Home = () => {
           <SectionTile tile={tiles[4]} lang={lang} delay={0.22} className="h-[240px] sm:h-[280px]" />
         </div>
       </section>
-
-      <MenuSection />
 
       <Footer />
     </motion.div>
