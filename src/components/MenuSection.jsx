@@ -105,7 +105,7 @@ const MenuSection = () => {
             transition={{ duration: 0.1 }}
           >
             {sections.map((section, sectionIndex) => (
-              <div key={section.id} className="mb-10 sm:mb-12" style={{ contentVisibility: sectionIndex === 0 ? 'visible' : 'auto', containIntrinsicSize: '1px 720px' }}>
+              <div key={section.id} className="mb-10 sm:mb-12">
                 <div className="text-center mb-6">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-gray-800">
                     {section.emoji && <span className="mr-2">{section.emoji}</span>}

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import MenuCard from '../components/MenuCard'
 import MenuGroupTabs from '../components/MenuGroupTabs'
@@ -19,7 +19,6 @@ export default function MenuPage({ initialTab = 'all' }) {
   const [activeTab, setActiveTab] = useState(initialTab)
   const { lang, t } = useLang()
   const { setSelectedProduct } = useApp()
-  const navigate = useNavigate()
   const location = useLocation()
   const sections = useMemo(() => getSectionsForTab(activeTab), [activeTab])
   const priorityImages = useMemo(() => getMenuPreloadImages(sections, activeTab === 'all' ? 2 : 4), [activeTab, sections])
@@ -126,7 +125,7 @@ export default function MenuPage({ initialTab = 'all' }) {
 
       <header className="pt-24 sm:pt-28 pb-8 px-4 text-center bg-gradient-to-b from-[#f5f2ee] to-[#faf8f4]">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => window.location.assign('/')}
           className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold uppercase mb-5 sm:mb-6 transition-colors hover:text-primary"
           style={{ color: 'rgba(200,161,56,0.85)' }}
         >
@@ -180,8 +179,8 @@ export default function MenuPage({ initialTab = 'all' }) {
             transition={{ duration: 0.18 }}
           >
             {sections.length > 0 ? (
-              sections.map((section, sectionIndex) => (
-                <section key={section.id} className="mb-10 sm:mb-12 scroll-mt-32" style={{ contentVisibility: sectionIndex === 0 ? 'visible' : 'auto', containIntrinsicSize: '1px 720px' }}>
+              sections.map((section) => (
+                <section key={section.id} className="mb-10 sm:mb-12 scroll-mt-32">
                   <div className="relative text-center mb-5 border-b border-primary/10 pb-3">
                     <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-primary">
                       {section.emoji && <span className="mr-2">{section.emoji}</span>}
