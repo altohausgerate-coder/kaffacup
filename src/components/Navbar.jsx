@@ -77,6 +77,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const isHome = location.pathname === '/'
+  const isMenuPage = location.pathname === '/menu'
 
   const categoryLabel = {
     'rolls': t('menu.cat.rolls'),
@@ -315,17 +316,19 @@ const Navbar = () => {
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </button>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-2" aria-label="Menu" aria-expanded={menuOpen}>
-            <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} />
-            <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { opacity: 0 } : { opacity: 1 }} />
-            <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} />
-          </button>
+          {!isMenuPage && (
+            <button onClick={() => setMenuOpen(!menuOpen)} className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-2" aria-label="Menu" aria-expanded={menuOpen}>
+              <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} />
+              <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { opacity: 0 } : { opacity: 1 }} />
+              <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} />
+            </button>
+          )}
         </div>
       </div>
 
       {/* Mobile menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {menuOpen && !isMenuPage && (
           <motion.div className="fixed inset-0 z-[55] bg-primary/98 backdrop-blur-xl flex flex-col items-stretch gap-4 px-6 pt-24 pb-8 overflow-y-auto md:hidden"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           >
