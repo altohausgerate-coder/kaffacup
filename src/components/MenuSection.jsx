@@ -20,15 +20,19 @@ const MenuSection = () => {
   const sections = getSectionsForTab(activeTab)
 
   useEffect(() => {
-    const imgs = getMenuPreloadImages(sections, activeTab === 'all' ? 6 : 10)
-    const controllers = imgs.map(src => { const img = new Image(); img.decoding = 'async'; img.src = src; return img })
-    return () => controllers.forEach(img => { img.src = '' })
+    const imgs = getMenuPreloadImages(sections, activeTab === 'all' ? 2 : 4)
+    const run = () => imgs.forEach(src => { const img = new Image(); img.decoding = 'async'; img.fetchPriority = 'low'; img.src = src })
+    const handle = window.requestIdleCallback ? window.requestIdleCallback(run, { timeout: 1200 }) : window.setTimeout(run, 250)
+    return () => {
+      if (window.cancelIdleCallback && typeof handle === 'number') window.cancelIdleCallback(handle)
+      window.clearTimeout(handle)
+    }
   }, [activeTab, sections])
 
   const renderItems = (items, sectionIndex = 0) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {items.map((item, i) => (
-        <MenuCard key={item.id} item={item} priority={sectionIndex === 0 && i < 4} onSelect={() => setSelectedProduct(item)} />
+        <MenuCard key={item.id} item={item} priority={sectionIndex === 0 && i < 2} onSelect={() => setSelectedProduct(item)} />
       ))}
     </div>
   )
@@ -101,7 +105,7 @@ const MenuSection = () => {
             transition={{ duration: 0.1 }}
           >
             {sections.map((section, sectionIndex) => (
-              <div key={section.id} className="mb-10 sm:mb-12">
+              <div key={section.id} className="mb-10 sm:mb-12" style={{ contentVisibility: sectionIndex === 0 ? 'visible' : 'auto', containIntrinsicSize: '1px 720px' }}>
                 <div className="text-center mb-6">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-gray-800">
                     {section.emoji && <span className="mr-2">{section.emoji}</span>}

@@ -1,3 +1,5 @@
+const MENU_IMAGE_VERSION = '20260713-3'
+
 const LOCAL_IMAGE_OVERRIDES = {
   s1: '/images/salat.jpg',
   s2: '/images/salat.jpg',
@@ -9,15 +11,15 @@ const LOCAL_IMAGE_OVERRIDES = {
   sw4: '/images/menu/sandwich-kaffa.png',
   sw5: '/images/menu/sandwich-meat.png',
   d3: '/images/sniker-tort.jpg',
-  ex1: '/images/menu/coffee-latte.png?v=5',
+  ex1: '/images/menu/coffee-latte.png',
   ex2: '/images/menu/dessert-dondurma-servis.png',
-  ex3: '/images/menu/drinks/lemonade-strawberry.png?v=6',
+  ex3: '/images/menu/drinks/lemonade-strawberry.png',
   ex4: '/images/menu/dessert-waffle-shokoladli.png',
-  ex5: '/images/menu/coffee-espresso-double.png?v=3',
-  ex6: '/images/menu/coffee-latte.png?v=5',
-  ex7: '/images/menu/drinks/lemonade-lime.png?v=4',
-  ex8: '/images/menu/drinks/lemonade-lime.png?v=4',
-  ex9: '/images/menu/coffee-cappuccino.png?v=3',
+  ex5: '/images/menu/coffee-espresso-double.png',
+  ex6: '/images/menu/coffee-latte.png',
+  ex7: '/images/menu/drinks/lemonade-lime.png',
+  ex8: '/images/menu/drinks/lemonade-lime.png',
+  ex9: '/images/menu/coffee-cappuccino.png',
 }
 
 const toFastMenuImage = (src) => {
@@ -28,25 +30,33 @@ const toFastMenuImage = (src) => {
     .replace(/\.(png|jpe?g|webp)$/i, '.jpg')
 }
 
+const withVersion = (src) => {
+  if (!src || typeof src !== 'string') return src
+  const base = src.split('?')[0]
+  return `${base}?v=${MENU_IMAGE_VERSION}`
+}
+
+const versionedMenuAsset = (src) => withVersion(toFastMenuImage(src))
+
 export const getMenuFallbackImage = (item = {}) => {
   const cat = item.category || ''
   if (cat === 'rolls') return '/images/menu/roll-kaffa.jpg'
-  if (cat === 'salads') return '/images/menu/salad-meat.png'
+  if (cat === 'salads') return '/images/salat.jpg'
   if (cat === 'sandwich') return '/images/menu/sandwich-kaffa.png'
   if (cat === 'bowls') return '/images/menu/bowl-toyuq.jpg'
-  if (cat === 'desserts') return '/images/menu/dessert-waffle-shokoladli.png'
-  if (cat === 'coffee-hot') return '/images/menu/coffee-latte.png?v=5'
-  if (cat === 'coffee-cold') return '/images/menu/kaffa-iced-coffee.jpg?v=2'
-  if (cat === 'drinks') return '/images/menu/drinks/lemonade-strawberry.png?v=6'
+  if (cat === 'desserts') return '/images/sniker-tort.jpg'
+  if (cat === 'coffee-hot') return '/images/menu/coffee-latte.png'
+  if (cat === 'coffee-cold') return '/images/menu/kaffa-iced-coffee.jpg'
+  if (cat === 'drinks') return '/images/menu/drinks/lemonade-strawberry.png'
   if (cat === 'specials') return '/images/menu/specials/special-combo-1.png'
   return '/images/qarisiq-yemek-asli.jpg'
 }
 
 export const getMenuImageSrc = (item = {}, forceFallback = false) => {
-  if (!forceFallback && LOCAL_IMAGE_OVERRIDES[item.id]) return toFastMenuImage(LOCAL_IMAGE_OVERRIDES[item.id])
+  if (!forceFallback && LOCAL_IMAGE_OVERRIDES[item.id]) return versionedMenuAsset(LOCAL_IMAGE_OVERRIDES[item.id])
   const src = item.img
-  if (forceFallback || !src || typeof src !== 'string') return toFastMenuImage(getMenuFallbackImage(item))
-  return src.startsWith('http') ? toFastMenuImage(getMenuFallbackImage(item)) : toFastMenuImage(src)
+  if (forceFallback || !src || typeof src !== 'string') return versionedMenuAsset(getMenuFallbackImage(item))
+  return src.startsWith('http') ? versionedMenuAsset(getMenuFallbackImage(item)) : versionedMenuAsset(src)
 }
 
 export const getMenuPreloadImages = (sections = [], limit = 8) => {

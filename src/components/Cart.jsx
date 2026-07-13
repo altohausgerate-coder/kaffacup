@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useApp } from '../context/AppContext'
 import { useCustomerAuth } from '../context/CustomerAuthContext'
+import { getMenuImageSrc } from '../utils/menuImages'
 
 const Cart = () => {
   const { cartOpen, setCartOpen, cart, cartTotal, cartCount, removeFromCart, updateQty, clearCart, placeOrder } = useApp()
@@ -132,9 +133,14 @@ const Cart = () => {
                             className="flex items-center gap-2 sm:gap-3 p-3 rounded-xl bg-gray-50">
                             <div className="w-14 h-14 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
                               {item.img ? (
-                                <img src={item.img} alt={item.name}
+                                <img
+                                  src={getMenuImageSrc(item)}
+                                  alt={item.name}
                                   className="w-full h-full object-cover"
-                                  onError={e => { e.target.style.display = 'none' }} />
+                                  loading="lazy"
+                                  decoding="async"
+                                  onError={e => { e.target.style.display = 'none' }}
+                                />
                               ) : (
                                 <div className="w-full h-full flex items-center justify-center text-2xl bg-primary/10">☕</div>
                               )}

@@ -22,7 +22,7 @@ export default function MenuPage({ initialTab = 'all' }) {
   const navigate = useNavigate()
   const location = useLocation()
   const sections = useMemo(() => getSectionsForTab(activeTab), [activeTab])
-  const priorityImages = useMemo(() => getMenuPreloadImages(sections, activeTab === 'all' ? 6 : 10), [activeTab, sections])
+  const priorityImages = useMemo(() => getMenuPreloadImages(sections, activeTab === 'all' ? 2 : 4), [activeTab, sections])
 
   useEffect(() => {
     setActiveTab(initialTab)
@@ -35,33 +35,27 @@ export default function MenuPage({ initialTab = 'all' }) {
   }, [location.state, setSelectedProduct])
 
   useEffect(() => {
-    const links = priorityImages.map((src) => {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'image'
-      link.href = src
-      link.fetchPriority = 'high'
-      link.dataset.menuPreload = 'true'
-      document.head.appendChild(link)
-      return link
-    })
-    const controllers = priorityImages.map((src) => {
-      const img = new Image()
-      img.decoding = 'async'
-      img.fetchPriority = 'high'
-      img.src = src
-      return img
-    })
+    const run = () => {
+      priorityImages.forEach((src) => {
+        const img = new Image()
+        img.decoding = 'async'
+        img.fetchPriority = 'low'
+        img.src = src
+      })
+    }
+    const handle = window.requestIdleCallback
+      ? window.requestIdleCallback(run, { timeout: 1200 })
+      : window.setTimeout(run, 250)
     return () => {
-      links.forEach(link => link.remove())
-      controllers.forEach(img => { img.src = '' })
+      if (window.cancelIdleCallback && typeof handle === 'number') window.cancelIdleCallback(handle)
+      window.clearTimeout(handle)
     }
   }, [priorityImages])
 
   const renderItems = (items, sectionIndex = 0) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {items.map((item, i) => (
-        <MenuCard key={item.id} item={item} priority={sectionIndex === 0 && i < 4} onSelect={() => setSelectedProduct(item)} />
+        <MenuCard key={item.id} item={item} priority={sectionIndex === 0 && i < 2} onSelect={() => setSelectedProduct(item)} />
       ))}
     </div>
   )
@@ -74,7 +68,7 @@ export default function MenuPage({ initialTab = 'all' }) {
         <p className="text-sm font-bold text-primary">{t('menu.specials.banner')}</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {items.map((item) => (
+        {items.map((item, itemIndex) => (
           <div
             key={item.id}
             className="group bg-white rounded-2xl overflow-hidden border border-primary/10 shadow-card card-glow cursor-pointer"
@@ -85,8 +79,8 @@ export default function MenuPage({ initialTab = 'all' }) {
                 src={getMenuImageSrc(item)}
                 alt={lang === 'ru' ? (item.nameRu || item.name) : lang === 'en' ? (item.nameEn || item.name) : item.name}
                 className="w-full h-full object-contain bg-white transition-transform duration-500 group-hover:scale-105"
-                loading={priority ? 'eager' : 'lazy'}
-                fetchPriority={priority ? 'high' : 'low'}
+                loading={priority && itemIndex < 2 ? 'eager' : 'lazy'}
+                fetchPriority={priority && itemIndex < 2 ? 'high' : 'low'}
                 decoding="async"
               />
             </div>
@@ -187,7 +181,7 @@ export default function MenuPage({ initialTab = 'all' }) {
           >
             {sections.length > 0 ? (
               sections.map((section, sectionIndex) => (
-                <section key={section.id} className="mb-10 sm:mb-12 scroll-mt-32">
+                <section key={section.id} className="mb-10 sm:mb-12 scroll-mt-32" style={{ contentVisibility: sectionIndex === 0 ? 'visible' : 'auto', containIntrinsicSize: '1px 720px' }}>
                   <div className="relative text-center mb-5 border-b border-primary/10 pb-3">
                     <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-primary">
                       {section.emoji && <span className="mr-2">{section.emoji}</span>}
