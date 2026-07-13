@@ -13,12 +13,9 @@ export function AdminProvider({ children }) {
   const [orders, setOrders] = useState(() => load('kc_orders', []))
   const [menuItems, setMenuItems] = useState(() => load('kc_admin_menu', null))
   const [tables, setTables] = useState(() => load('kc_tables', Array.from({ length: 16 }, (_, i) => ({ id: i + 1, capacity: i < 6 ? 4 : i < 12 ? 2 : 6, status: 'available', x: 0, y: 0 }))))
-  const [adminReservations, setAdminReservations] = useState(() => load('kc_reservations', []))
-
   useEffect(() => { localStorage.setItem('kc_orders', JSON.stringify(orders)) }, [orders])
   useEffect(() => { if (menuItems) localStorage.setItem('kc_admin_menu', JSON.stringify(menuItems)) }, [menuItems])
   useEffect(() => { localStorage.setItem('kc_tables', JSON.stringify(tables)) }, [tables])
-  useEffect(() => { localStorage.setItem('kc_reservations', JSON.stringify(adminReservations)) }, [adminReservations])
 
   const login = useCallback((pass) => { if (pass === ADMIN_PASSWORD) { setAuthenticated(true); return true } return false }, [])
   const logout = useCallback(() => setAuthenticated(false), [])
@@ -55,21 +52,12 @@ export function AdminProvider({ children }) {
     setTables(prev => prev.filter(t => t.id !== id))
   }, [])
 
-  const updateReservation = useCallback((id, data) => {
-    setAdminReservations(prev => prev.map(r => r.id === id ? { ...r, ...data } : r))
-  }, [])
-
-  const deleteReservation = useCallback((id) => {
-    setAdminReservations(prev => prev.filter(r => r.id !== id))
-  }, [])
-
   return (
     <AdminContext.Provider value={{
       authenticated, login, logout,
       orders, updateOrderStatus,
       menuItems, addMenuItem, updateMenuItem, toggleItemAvailability, removeMenuItem,
       tables, updateTable, addTable, removeTable,
-      adminReservations, updateReservation, deleteReservation,
     }}>
       {children}
     </AdminContext.Provider>

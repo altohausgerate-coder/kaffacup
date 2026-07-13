@@ -6,7 +6,6 @@ const links = [
   { to: '/admin/orders', label: 'Sifarişlər', icon: '📋' },
   { to: '/admin/menu', label: 'Menyu', icon: '🍽️' },
   { to: '/admin/tables', label: 'Masalar', icon: '🪑' },
-  { to: '/admin/reservations', label: 'Rezervasiyalar', icon: '📅' },
   { to: '/admin/analytics', label: 'Analitika', icon: '📈' },
 ]
 

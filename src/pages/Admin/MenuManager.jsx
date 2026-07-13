@@ -5,7 +5,6 @@ import AdminLayout from '../../components/AdminLayout'
 
 const categories = [
   { key: 'breakfast', label: 'Səhər Yeməyi', icon: '🥞' },
-  { key: 'croissants', label: 'Kruassan', icon: '🥐' },
   { key: 'rolls', label: 'Roll', icon: '🌯' },
   { key: 'salads', label: 'Salat', icon: '🥗' },
   { key: 'coffee', label: 'Qəhvə', icon: '☕' },
