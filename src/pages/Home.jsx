@@ -94,7 +94,7 @@ const tiles = [
     to: '/contact',
     image: '/İmages/gallery2.jpg.webp',
     badge: { az: 'Ünvan', ru: 'Адрес', en: 'Location' },
-    title: { az: 'Əlaqə', ru: 'Контакт', en: 'Contact' },
+    title: { az: 'Kontakt', ru: 'Контакт', en: 'Contact' },
     desc: { az: 'Bizi tapın, gəlin görüşək', ru: 'Найдите нас', en: 'Come find us' },
   },
   {
