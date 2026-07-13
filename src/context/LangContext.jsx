@@ -128,7 +128,7 @@ const translations = {
     'footer.nav.reservation': 'Rezervasiya',
     'footer.nav.team': 'Komanda',
     'footer.nav.contact': 'Əlaqə',
-    'footer.nav.careers': 'Bizimlə İşlə',
+    'footer.nav.careers': 'Komandamıza Qoşul',
     'footer.nav.privacy': 'Məxfilik Siyasəti',
     'footer.maps': 'Google Maps-də aç',
     'footer.wolt': 'Wolt-da sifariş et',
