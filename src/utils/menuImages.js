@@ -1,4 +1,4 @@
-const MENU_IMAGE_VERSION = '20260713-6'
+const MENU_IMAGE_VERSION = '20260713-7'
 
 const LOCAL_IMAGE_OVERRIDES = {
   s1: '/images/qarisiq-yemek-asli.jpg',
@@ -6,16 +6,16 @@ const LOCAL_IMAGE_OVERRIDES = {
   s3: '/images/sezar-salati.jpg',
   s4: '/images/salat.jpg',
   s5: '/images/menu/salad-meat.jpg',
-  sw1: '/images/menu/sandwich-kaffa.png',
-  sw2: '/images/menu/sandwich-kaffa.png',
-  sw3: '/images/menu/sandwich-meat.png',
-  sw4: '/images/menu/sandwich-kaffa.png',
+  sw1: '/images/menu/croissant-sandwich.jpg',
+  sw2: '/images/menu/croissant-salmon.jpg',
+  sw3: '/images/menu/croissant-classic.jpg',
+  sw4: '/images/menu/croissant-sandwich.jpg',
   sw5: '/images/menu/sandwich-meat.png',
   sw6: '/images/menu/sandwich-meat.png',
   sw7: '/images/menu/sandwich-cheese.png',
   sw8: '/images/menu/sandwich-kaffa.png',
   sw9: '/images/menu/bagette-vegeterian.png',
-  d3: '/images/sniker-tort.jpg',
+  d3: '/images/napaleon-desert.jpg',
   d8: '/images/menu/dessert-waffle-shokoladli.png',
   d9: '/images/menu/dessert-waffle-meyveli.png',
   d10: '/images/menu/dessert-waffle-dondurmali-sade.png',
@@ -55,7 +55,7 @@ export const getMenuFallbackImage = (item = {}) => {
   if (cat === 'salads') return '/images/salat.jpg'
   if (cat === 'sandwich') return '/images/menu/sandwich-kaffa.png'
   if (cat === 'bowls') return '/images/menu/bowl-toyuq.jpg'
-  if (cat === 'desserts') return '/images/sniker-tort.jpg'
+  if (cat === 'desserts') return '/images/napaleon-desert.jpg'
   if (cat === 'coffee-hot') return '/images/menu/coffee-latte.png'
   if (cat === 'coffee-cold') return '/images/menu/kaffa-iced-coffee.jpg'
   if (cat === 'drinks') return '/images/menu/drinks/lemonade-strawberry.png'
