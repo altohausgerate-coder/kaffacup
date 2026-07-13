@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Footer from '../components/Footer'
+import FloatingBeans from '../components/FloatingBeans'
 import { useLang } from '../context/LangContext'
 import { useCustomerAuth } from '../context/CustomerAuthContext'
 
@@ -238,41 +239,46 @@ const Home = () => {
     >
       <Navbar />
       <Hero />
-      <InfoStrip />
-      <CashbackBanner />
 
-      {/* Section tiles */}
-      <section id="sections" className="px-4 py-10 max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-8"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-        >
-          <p className="text-xs uppercase font-semibold mb-2" style={{ color: 'rgba(200,161,56,0.85)', letterSpacing: 0 }}>
-            Kaffa Cup
-          </p>
-          <div className="h-px bg-primary/15 max-w-xs mx-auto" />
-        </motion.div>
+      <div className="relative">
+        <FloatingBeans />
 
-        {/* Grid: large left tile + 2 right tiles */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4">
-          <div className="lg:col-span-7 h-[320px] sm:h-[420px] lg:h-[560px]">
-            <SectionTile tile={tiles[0]} lang={lang} delay={0} className="h-full" />
+        <InfoStrip />
+        <CashbackBanner />
+
+        {/* Section tiles */}
+        <section id="sections" className="px-4 py-10 max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-8"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <p className="text-xs uppercase font-semibold mb-2" style={{ color: 'rgba(200,161,56,0.85)', letterSpacing: 0 }}>
+              Kaffa Cup
+            </p>
+            <div className="h-px bg-primary/15 max-w-xs mx-auto" />
+          </motion.div>
+
+          {/* Grid: large left tile + 2 right tiles */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4">
+            <div className="lg:col-span-7 h-[320px] sm:h-[420px] lg:h-[560px]">
+              <SectionTile tile={tiles[0]} lang={lang} delay={0} className="h-full" />
+            </div>
+            <div className="lg:col-span-5 grid grid-rows-2 gap-4 h-[360px] sm:h-[420px] lg:h-[560px]">
+              <SectionTile tile={tiles[1]} lang={lang} delay={0.08} className="h-full" />
+              <SectionTile tile={tiles[2]} lang={lang} delay={0.14} className="h-full" />
+            </div>
           </div>
-          <div className="lg:col-span-5 grid grid-rows-2 gap-4 h-[360px] sm:h-[420px] lg:h-[560px]">
-            <SectionTile tile={tiles[1]} lang={lang} delay={0.08} className="h-full" />
-            <SectionTile tile={tiles[2]} lang={lang} delay={0.14} className="h-full" />
-          </div>
-        </div>
 
-        {/* Bottom row: 2 equal tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <SectionTile tile={tiles[3]} lang={lang} delay={0.18} className="h-[240px] sm:h-[280px]" />
-          <SectionTile tile={tiles[4]} lang={lang} delay={0.22} className="h-[240px] sm:h-[280px]" />
-        </div>
-      </section>
+          {/* Bottom row: 2 equal tiles */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <SectionTile tile={tiles[3]} lang={lang} delay={0.18} className="h-[240px] sm:h-[280px]" />
+            <SectionTile tile={tiles[4]} lang={lang} delay={0.22} className="h-[240px] sm:h-[280px]" />
+          </div>
+        </section>
+      </div>
 
       <Footer />
     </motion.div>
