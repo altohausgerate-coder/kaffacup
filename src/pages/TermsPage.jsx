@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import Cart from '../components/Cart'
 import { useLang } from '../context/LangContext'
 
 const sectionIcons = [
@@ -46,16 +45,16 @@ export default function TermsPage() {
       <Navbar />
 
       {/* Hero */}
-      <div className="relative pt-32 pb-20 px-4 overflow-hidden" style={{ background: '#32534c' }}>
+      <div className="relative pt-24 sm:pt-32 pb-14 sm:pb-20 px-4 overflow-hidden" style={{ background: '#32534c' }}>
         <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
           style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, #c8a138 0%, transparent 60%)' }} />
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.p className="text-xs tracking-[0.3em] uppercase font-semibold mb-4"
-            style={{ color: 'rgba(200,161,56,0.85)' }}
+          <motion.p className="text-xs uppercase font-semibold mb-4"
+            style={{ color: 'rgba(200,161,56,0.85)', letterSpacing: 0 }}
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             {t('terms.label')}
           </motion.p>
-          <motion.h1 className="font-display text-white text-4xl md:text-5xl mb-4"
+          <motion.h1 className="font-display text-white text-3xl sm:text-4xl md:text-5xl mb-4"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}>
             {t('terms.title')}
           </motion.h1>
@@ -67,9 +66,9 @@ export default function TermsPage() {
       </div>
 
       {/* Intro */}
-      <div className="max-w-4xl mx-auto px-4 py-14">
+      <div className="max-w-4xl mx-auto px-4 py-10 sm:py-14">
         <motion.div
-          className="rounded-2xl p-8 mb-10 border-l-4"
+          className="rounded-2xl p-5 sm:p-8 mb-8 sm:mb-10 border-l-4"
           style={{ background: '#f0f5f2', borderColor: '#32534c' }}
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <p className="text-gray-700 leading-relaxed font-body text-base">
@@ -81,7 +80,7 @@ export default function TermsPage() {
         <div className="flex flex-col gap-6">
           {sectionKeys.map((s, i) => (
             <motion.div key={i}
-              className="rounded-2xl p-7 border border-gray-100 hover:border-primary/20 transition-colors"
+              className="rounded-2xl p-5 sm:p-7 border border-gray-100 hover:border-primary/20 transition-colors"
               style={{ background: '#fff', boxShadow: '0 2px 16px rgba(50,83,76,0.06)' }}
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25 + i * 0.07, type: 'spring', stiffness: 160 }}>
@@ -98,7 +97,7 @@ export default function TermsPage() {
         </div>
 
         {/* Closing */}
-        <motion.div className="mt-10 rounded-2xl p-8 text-center"
+        <motion.div className="mt-8 sm:mt-10 rounded-2xl p-5 sm:p-8 text-center"
           style={{ background: '#32534c' }}
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
           <p className="text-white/80 font-body text-sm leading-relaxed max-w-2xl mx-auto mb-4">
@@ -118,7 +117,6 @@ export default function TermsPage() {
       </div>
 
       <Footer />
-      <Cart />
     </div>
   )
 }

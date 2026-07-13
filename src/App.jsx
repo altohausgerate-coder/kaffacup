@@ -24,15 +24,19 @@ import Tables from './pages/Admin/Tables'
 import Analytics from './pages/Admin/Analytics'
 import ProductModal from './components/ProductModal'
 import ScrollToTop from './components/ScrollToTop'
+import Cart from './components/Cart'
 
 const GlobalUI = () => {
   const { selectedProduct, setSelectedProduct } = useApp()
   return (
-    <AnimatePresence>
-      {selectedProduct && (
-        <ProductModal item={selectedProduct} onClose={() => setSelectedProduct(null)} />
-      )}
-    </AnimatePresence>
+    <>
+      <AnimatePresence>
+        {selectedProduct && (
+          <ProductModal item={selectedProduct} onClose={() => setSelectedProduct(null)} />
+        )}
+      </AnimatePresence>
+      <Cart />
+    </>
   )
 }
 

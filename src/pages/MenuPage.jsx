@@ -76,14 +76,14 @@ export default function MenuPage({ initialTab = 'all' }) {
           <button
             type="button"
             key={item.id}
-            className="bg-white rounded-xl border border-primary/10 px-4 py-3 text-left flex items-start justify-between gap-4 hover:border-primary/30 hover:shadow-sm transition-all"
+            className="bg-white rounded-xl border border-primary/10 px-4 py-3 text-left flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 hover:border-primary/30 hover:shadow-sm transition-all"
             onClick={() => setSelectedProduct(item)}
           >
             <span className="min-w-0">
               <span className="block text-sm font-semibold text-gray-800 truncate">{name}</span>
               {desc && <span className="block text-xs text-gray-400 truncate mt-0.5">{desc}</span>}
             </span>
-            <span className="text-sm font-bold text-primary shrink-0">{formatPrice(item)}</span>
+            <span className="text-sm font-bold text-primary shrink-0 leading-snug">{formatPrice(item)}</span>
           </button>
         )
       })}
@@ -100,10 +100,10 @@ export default function MenuPage({ initialTab = 'all' }) {
     >
       <Navbar />
 
-      <header className="pt-28 pb-8 px-4 text-center bg-gradient-to-b from-[#f5f2ee] to-[#faf8f4]">
+      <header className="pt-24 sm:pt-28 pb-8 px-4 text-center bg-gradient-to-b from-[#f5f2ee] to-[#faf8f4]">
         <button
           onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-6 transition-colors hover:text-primary"
+          className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold uppercase mb-5 sm:mb-6 transition-colors hover:text-primary"
           style={{ color: 'rgba(200,161,56,0.85)' }}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -112,8 +112,8 @@ export default function MenuPage({ initialTab = 'all' }) {
           Kaffa Cup
         </button>
         <motion.h1
-          className="font-display text-primary mb-2"
-          style={{ fontSize: 'clamp(36px, 7vw, 72px)' }}
+          className="font-display text-primary mb-2 text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] leading-none"
+          style={{ letterSpacing: 0 }}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -121,7 +121,7 @@ export default function MenuPage({ initialTab = 'all' }) {
           {t('menu.title')}
         </motion.h1>
         <motion.p
-          className="text-gray-500 text-sm font-body"
+          className="mx-auto max-w-sm text-gray-500 text-sm font-body"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.18 }}
@@ -142,7 +142,7 @@ export default function MenuPage({ initialTab = 'all' }) {
         </div>
 
         <div className="flex items-center justify-between gap-3 py-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary/70">
+          <p className="text-xs font-semibold uppercase text-primary/70" style={{ letterSpacing: 0 }}>
             {t(menuGroupTabs.find(tab => tab.id === activeTab)?.labelKey || 'menu.cat.all')}
           </p>
         </div>
@@ -157,9 +157,9 @@ export default function MenuPage({ initialTab = 'all' }) {
           >
             {sections.length > 0 ? (
               sections.map((section) => (
-                <section key={section.id} className="mb-12 scroll-mt-32">
+                <section key={section.id} className="mb-10 sm:mb-12 scroll-mt-32">
                   <div className="relative text-center mb-5 border-b border-primary/10 pb-3">
-                    <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary">
+                    <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-primary">
                       {section.emoji && <span className="mr-2">{section.emoji}</span>}
                       {t(section.titleKey)}
                     </h2>
@@ -172,7 +172,7 @@ export default function MenuPage({ initialTab = 'all' }) {
                 </section>
               ))
             ) : (
-              <div className="bg-white border border-primary/10 rounded-2xl p-8 text-center text-gray-500">
+              <div className="bg-white border border-primary/10 rounded-2xl p-5 sm:p-8 text-center text-gray-500">
                 {t('menu.empty')}
               </div>
             )}

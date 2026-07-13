@@ -79,32 +79,32 @@ export default function CareersSection() {
 
   const Field = ({ label, error, children }) => (
     <div className="flex flex-col gap-1.5">
-      <label className="text-xs font-semibold tracking-wider uppercase text-white/50">{label}</label>
+      <label className="text-xs font-semibold uppercase text-white/50" style={{ letterSpacing: 0 }}>{label}</label>
       {children}
       {error && <p className="text-xs text-red-300">{error}</p>}
     </div>
   )
 
   return (
-    <section id="careers" className="relative py-24 px-4 overflow-hidden" style={{ background: '#1e3a33' }}>
+    <section id="careers" className="relative py-14 sm:py-24 px-4 overflow-hidden" style={{ background: '#1e3a33' }}>
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #fff 0%, transparent 55%), radial-gradient(circle at 80% 20%, #c8a138 0%, transparent 45%)' }} />
 
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
-          <motion.p className="text-xs tracking-[0.3em] uppercase font-semibold mb-3"
-            style={{ color: 'rgba(200,161,56,0.8)' }}
+        <div className="text-center mb-10 sm:mb-16">
+          <motion.p className="text-xs uppercase font-semibold mb-3"
+            style={{ color: 'rgba(200,161,56,0.8)', letterSpacing: 0 }}
             initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             {t('careers.label')}
           </motion.p>
-          <motion.h2 className="text-4xl md:text-5xl font-display text-white mb-4 leading-tight"
+          <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white mb-4 leading-tight"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ delay: 0.05 }}>
             {t('careers.title')}
           </motion.h2>
-          <motion.p className="text-white/55 max-w-xl mx-auto font-body text-base leading-relaxed"
+          <motion.p className="text-white/55 max-w-xl mx-auto font-body text-sm sm:text-base leading-relaxed"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
             transition={{ delay: 0.1 }}>
             {t('careers.desc')}
@@ -113,14 +113,14 @@ export default function CareersSection() {
             initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
           {/* Left: Perks + open positions */}
           <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
               {perkKeys.map((p, i) => (
                 <motion.div key={i}
-                  className="rounded-2xl p-5 flex flex-col gap-3"
+                  className="rounded-xl sm:rounded-2xl p-4 sm:p-5 flex flex-col gap-3"
                   style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
                   initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                   transition={{ delay: i * 0.07, type: 'spring', stiffness: 160 }}
@@ -137,16 +137,16 @@ export default function CareersSection() {
 
             {/* Open positions */}
             <motion.div
-              className="rounded-2xl p-6"
+              className="rounded-2xl p-5 sm:p-6"
               style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <p className="text-xs tracking-widest uppercase text-white/40 font-semibold mb-4">{t('careers.open')}</p>
+              <p className="text-xs uppercase text-white/40 font-semibold mb-4" style={{ letterSpacing: 0 }}>{t('careers.open')}</p>
               <div className="flex flex-wrap gap-2">
                 {positionKeys.slice(0, -1).map((key, i) => (
                   <span key={i}
-                    className="text-sm px-4 py-1.5 rounded-full font-medium"
+                    className="text-sm px-3 sm:px-4 py-1.5 rounded-full font-medium"
                     style={{ background: 'rgba(200,161,56,0.12)', color: 'rgba(200,161,56,0.9)', border: '1px solid rgba(200,161,56,0.2)' }}>
                     {t(key)}
                   </span>
@@ -160,13 +160,13 @@ export default function CareersSection() {
 
           {/* Right: Application form */}
           <motion.div
-            className="rounded-3xl p-8"
+            className="rounded-2xl sm:rounded-3xl p-5 sm:p-8"
             style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(12px)' }}
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 130, delay: 0.1 }}
           >
             <h3 className="text-xl font-display text-white mb-1">{t('careers.form.title')}</h3>
-            <p className="text-white/40 text-sm mb-7">{t('careers.form.desc')}</p>
+            <p className="text-white/40 text-sm mb-6 sm:mb-7">{t('careers.form.desc')}</p>
 
             <AnimatePresence>
               {sent && (

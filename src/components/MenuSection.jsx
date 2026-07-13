@@ -41,14 +41,14 @@ const MenuSection = () => {
           <button
             key={item.id}
             type="button"
-            className="bg-white/80 rounded-xl p-3 flex items-center justify-between gap-2 border border-primary/5 text-left hover:border-primary/20 transition-colors"
+            className="bg-white/80 rounded-xl p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border border-primary/5 text-left hover:border-primary/20 transition-colors"
             onClick={() => setSelectedProduct(item)}
           >
             <span className="min-w-0">
               <span className="block text-xs font-semibold text-gray-700 truncate">{listName}</span>
               {listDesc && <span className="block text-[10px] text-gray-400 truncate">{listDesc}</span>}
             </span>
-            <span className="text-xs font-bold text-primary shrink-0">{formatPrice(item)}</span>
+            <span className="text-xs font-bold text-primary shrink-0 leading-snug">{formatPrice(item)}</span>
           </button>
         )
       })}
@@ -56,11 +56,11 @@ const MenuSection = () => {
   )
 
   return (
-    <section className="py-20 px-4 bg-mint" id="menu">
+    <section className="py-14 sm:py-20 px-4 bg-mint" id="menu">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <motion.h2
-            className="text-4xl md:text-5xl font-heading font-bold text-primary"
+            className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-primary"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -87,7 +87,7 @@ const MenuSection = () => {
           />
         </div>
 
-        <div className="sticky top-0 z-30 mb-8 bg-white/95 pt-2 pb-0 shadow-sm backdrop-blur border-y border-primary/10">
+        <div className="sticky top-[56px] z-30 mb-8 -mx-4 bg-white/95 pt-2 pb-0 shadow-sm backdrop-blur border-y border-primary/10">
           <MenuGroupTabs activeTab={activeTab} onChange={setActiveTab} layoutId="homeMenuTab" />
         </div>
 
@@ -100,9 +100,9 @@ const MenuSection = () => {
             transition={{ duration: 0.1 }}
           >
             {sections.map((section) => (
-              <div key={section.id} className="mb-12">
+              <div key={section.id} className="mb-10 sm:mb-12">
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-gray-800">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-gray-800">
                     {section.emoji && <span className="mr-2">{section.emoji}</span>}
                     {t(section.titleKey)}
                   </h3>
@@ -119,7 +119,7 @@ const MenuSection = () => {
           <motion.button
             type="button"
             onClick={() => setCartOpen(true)}
-            className="fixed bottom-6 left-6 z-40 bg-accent text-white px-5 py-3 rounded-full shadow-xl flex items-center gap-2"
+            className="fixed bottom-4 left-4 right-4 sm:right-auto sm:bottom-6 sm:left-6 z-40 bg-accent text-white px-5 py-3 rounded-full shadow-xl flex items-center justify-center gap-2"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}

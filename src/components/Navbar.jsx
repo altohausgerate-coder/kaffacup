@@ -169,6 +169,11 @@ const Navbar = () => {
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen || searchOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen, searchOpen])
+
   const closeSearch = () => { setSearchOpen(false); setQuery('') }
 
   const handleResultClick = (item) => {
@@ -179,7 +184,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 flex items-center px-6"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center px-3 sm:px-6"
       style={{
         height: solid ? 56 : 72,
         backdropFilter: solid ? 'blur(16px)' : 'none',
@@ -192,8 +197,10 @@ const Navbar = () => {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4">
 
         {/* Logo + Nav links grouped left */}
-        <div className="flex items-center gap-6 ml-10">
-          <Link to="/" className="flex items-center gap-2 font-heading font-bold text-white tracking-wider text-xl shrink-0">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <Link to="/" className="flex items-center gap-2 font-heading font-bold text-white text-base sm:text-xl shrink-0" onClick={() => setMenuOpen(false)}>
+            <GoatLogo size={38} animate={false} />
+            <span className="hidden min-[360px]:inline leading-none">KAFFA CUP</span>
           </Link>
 
           {/* Desktop nav */}
@@ -211,13 +218,13 @@ const Navbar = () => {
         <AnimatePresence>
           {searchOpen && (
             <motion.div ref={searchRef}
-              className="absolute left-0 right-0 top-0 bottom-0 flex items-center px-6 z-10"
+              className="fixed inset-0 z-[60] flex items-start px-3 pt-20 pb-6 md:absolute md:bottom-0 md:items-center md:px-6 md:py-0"
               style={{ background: 'rgba(30,58,51,0.98)', backdropFilter: 'blur(16px)' }}
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               transition={{ duration: 0.18 }}
             >
               <div className="w-full max-w-2xl mx-auto relative">
-                <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl"
+                <div className="flex items-center gap-3 px-4 py-3 md:py-2.5 rounded-xl"
                   style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -227,7 +234,7 @@ const Navbar = () => {
                     value={query}
                     onChange={e => setQuery(e.target.value)}
                     placeholder={t('nav.search.placeholder')}
-                    className="flex-1 bg-transparent text-white placeholder-white/35 text-sm outline-none"
+                    className="flex-1 min-w-0 bg-transparent text-white placeholder-white/35 text-base md:text-sm outline-none"
                   />
                   {query && (
                     <button onClick={() => setQuery('')} className="text-white/40 hover:text-white transition-colors">
@@ -277,7 +284,7 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              <button onClick={closeSearch} className="ml-4 text-white/60 hover:text-white transition-colors shrink-0 text-sm font-medium">
+              <button onClick={closeSearch} className="ml-2 md:ml-4 mt-0.5 md:mt-0 text-white/70 hover:text-white transition-colors shrink-0 rounded-full px-3 py-2 text-xs md:text-sm font-medium bg-white/10 md:bg-transparent">
                 {t('nav.search.close')}
               </button>
             </motion.div>
@@ -300,13 +307,13 @@ const Navbar = () => {
         </div>
 
         {/* Mobile: search + burger */}
-        <div className="md:hidden flex items-center gap-3">
-          <button onClick={() => setSearchOpen(true)} className="text-white" aria-label="Axtar">
+        <div className="md:hidden flex items-center gap-2">
+          <button onClick={() => setSearchOpen(true)} className="flex h-11 w-11 items-center justify-center text-white" aria-label="Axtar">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </button>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="flex flex-col gap-1.5 p-2" aria-label="Menu">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-2" aria-label="Menu" aria-expanded={menuOpen}>
             <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} />
             <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { opacity: 0 } : { opacity: 1 }} />
             <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} />
@@ -317,15 +324,29 @@ const Navbar = () => {
       {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div className="fixed inset-0 bg-primary/98 backdrop-blur-xl flex flex-col items-center justify-center gap-6 md:hidden"
+          <motion.div className="fixed inset-0 z-[55] bg-primary/98 backdrop-blur-xl flex flex-col items-stretch gap-4 px-6 pt-24 pb-8 overflow-y-auto md:hidden"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           >
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white"
+              aria-label="Menu bagla"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+            <Link to="/" onClick={() => setMenuOpen(false)} className="mb-4 flex items-center justify-center gap-3 text-white">
+              <GoatLogo size={54} animate={false} />
+              <span className="font-heading text-xl font-bold">KAFFA CUP</span>
+            </Link>
             {navLinks.map((l, i) => (
               <motion.div key={l.to}
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
                 transition={{ delay: i * 0.07 }}>
                 <Link to={l.to} onClick={() => setMenuOpen(false)}
-                  className="text-2xl font-heading font-semibold text-white/90">
+                  className="block rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-center text-xl font-heading font-semibold text-white/90">
                   {l.label}
                 </Link>
               </motion.div>
@@ -334,7 +355,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
               transition={{ delay: navLinks.length * 0.07 }}>
               <Link to="/careers" onClick={() => setMenuOpen(false)}
-                className="text-2xl font-heading font-semibold flex items-center gap-2"
+                className="flex items-center justify-center gap-2 rounded-2xl border border-[rgba(200,161,56,0.25)] bg-[rgba(200,161,56,0.10)] px-5 py-4 text-xl font-heading font-semibold"
                 style={{ color: 'rgba(200,161,56,0.9)' }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
@@ -342,6 +363,11 @@ const Navbar = () => {
                 {t('nav.careers')}
               </Link>
             </motion.div>
+            <div className="grid grid-cols-3 gap-2 pt-2">
+              <button type="button" onClick={() => { window.open('https://wa.me/994517326959', '_blank'); setMenuOpen(false) }} className="rounded-2xl bg-white/10 px-3 py-3 text-sm font-semibold text-white">WhatsApp</button>
+              <button type="button" onClick={() => { window.open('https://www.instagram.com/kaffacupcoffee/', '_blank'); setMenuOpen(false) }} className="rounded-2xl bg-white/10 px-3 py-3 text-sm font-semibold text-white">Instagram</button>
+              <button type="button" onClick={() => { window.open('https://wolt.com/en/aze/sumgait/restaurant/kaffa-cup', '_blank'); setMenuOpen(false) }} className="rounded-2xl bg-white/10 px-3 py-3 text-sm font-semibold text-white">Wolt</button>
+            </div>
             <div className="flex items-center gap-2 mt-6 bg-white/10 rounded-full p-1">
               {langOptions.map(o => (
                 <button key={o.code} onClick={() => { setLang(o.code); setMenuOpen(false) }} aria-label={o.label}

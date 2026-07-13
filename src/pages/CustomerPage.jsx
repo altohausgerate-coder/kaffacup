@@ -148,7 +148,7 @@ function LoginForm({ onLogin }) {
   ]
 
   return (
-    <motion.div className="min-h-screen flex flex-col items-center justify-center px-4 py-10"
+    <motion.div className="min-h-[100svh] flex flex-col items-center justify-center px-4 pt-20 pb-10"
       style={{ background: 'linear-gradient(135deg, #32534c, #1e3a33)' }}
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Navbar />
@@ -165,7 +165,7 @@ function LoginForm({ onLogin }) {
         <div className="space-y-3">
           {fields.map(({ key, label, placeholder, type }) => (
             <div key={key}>
-              <label className="block text-xs font-semibold tracking-wider uppercase mb-1.5"
+              <label className="block text-xs font-semibold uppercase mb-1.5"
                 style={{ color: 'rgba(255,255,255,0.45)' }}>{label}</label>
               <input
                 type={type}
@@ -218,9 +218,9 @@ export default function CustomerPage() {
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
       <Navbar />
 
-      <div className="max-w-lg mx-auto px-4 pt-28 pb-20">
+      <div className="max-w-lg mx-auto px-4 pt-24 sm:pt-28 pb-20">
         <button onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-6 transition-colors"
+          className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold uppercase mb-5 sm:mb-6 transition-colors"
           style={{ color: 'rgba(200,161,56,0.8)' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -235,22 +235,22 @@ export default function CustomerPage() {
             style={{ background: 'rgba(200,161,56,0.85)' }}>
             {name?.[0]?.toUpperCase() || '?'}
           </div>
-          <div>
+          <div className="min-w-0">
             <h2 className="text-white font-bold text-lg leading-tight">{name}</h2>
-            <p className="text-white/40 text-xs">{user.email}</p>
+            <p className="text-white/40 text-xs break-all">{user.email}</p>
           </div>
         </motion.div>
 
         {/* Balance card */}
-        <motion.div className="rounded-2xl p-6 mb-4 shadow-xl text-white relative overflow-hidden"
+        <motion.div className="rounded-2xl p-5 sm:p-6 mb-4 shadow-xl text-white relative overflow-hidden"
           style={{ background: 'linear-gradient(135deg, rgba(200,161,56,1), rgba(175,138,35,1))' }}
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
           <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-10"
             style={{ background: 'white', transform: 'translate(25%, -25%)' }} />
           <div className="absolute bottom-0 right-8 w-20 h-20 rounded-full opacity-10"
             style={{ background: 'white', transform: 'translate(0, 50%)' }} />
-          <p className="text-sm font-semibold opacity-75 uppercase tracking-widest mb-1">Cashback Balansı</p>
-          <p className="font-display text-5xl mb-1">{cashbackBalance.toFixed(2)} ₼</p>
+          <p className="text-sm font-semibold opacity-75 uppercase mb-1" style={{ letterSpacing: 0 }}>Cashback Balansı</p>
+          <p className="font-display text-4xl sm:text-5xl mb-1">{cashbackBalance.toFixed(2)} ₼</p>
           <p className="text-sm opacity-60">Cəmi qazanılan: {totalEarned.toFixed(2)} ₼</p>
           <div className="mt-4 pt-4 border-t border-white/20">
             <p className="text-xs opacity-50">Hər alışdan 5% · Kassada promo kodunuzu göstərin</p>
@@ -261,21 +261,21 @@ export default function CustomerPage() {
         <motion.div className="rounded-2xl mb-4 overflow-hidden shadow-lg"
           style={{ background: 'linear-gradient(135deg, #1e3a33, #32534c)' }}
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-          <div className="px-6 pt-6 pb-4 text-center">
-            <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: 'rgba(200,161,56,0.7)' }}>
+          <div className="px-5 sm:px-6 pt-6 pb-4 text-center">
+            <p className="text-xs font-bold uppercase mb-1" style={{ color: 'rgba(200,161,56,0.7)', letterSpacing: 0 }}>
               Şəxsi Promo Kodunuz
             </p>
             <p className="text-white/60 text-sm mb-0.5">Xoş gəldiniz,</p>
             <p className="text-white font-bold text-xl">{name} 👋</p>
           </div>
 
-          <div className="mx-6 mb-5 rounded-xl px-4 py-4 text-center"
+          <div className="mx-5 sm:mx-6 mb-5 rounded-xl px-4 py-4 text-center"
             style={{ background: 'rgba(200,161,56,1)' }}>
-            <p className="text-xs font-semibold tracking-widest uppercase mb-2 text-white/70">Promo Kodu</p>
-            <p className="font-mono font-extrabold text-3xl tracking-widest text-white select-all">{promoCode}</p>
+            <p className="text-xs font-semibold uppercase mb-2 text-white/70" style={{ letterSpacing: 0 }}>Promo Kodu</p>
+            <p className="font-mono font-extrabold text-[1.55rem] sm:text-3xl text-white select-all break-all">{promoCode}</p>
           </div>
 
-          <div className="px-6 pb-2">
+          <div className="px-5 sm:px-6 pb-2">
             <div className="rounded-xl px-4 py-3 mb-4" style={{ background: 'rgba(255,255,255,0.06)' }}>
               <p className="text-white/55 text-xs text-center leading-relaxed">
                 Bu kodu <span className="text-white/80 font-semibold">kassada göstərin</span> — hər alışda <span className="text-yellow-400 font-bold">5% cashback</span> qazanın
@@ -283,7 +283,7 @@ export default function CustomerPage() {
             </div>
           </div>
 
-          <div className="px-6 pb-6 grid grid-cols-2 gap-3">
+          <div className="px-5 sm:px-6 pb-5 sm:pb-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
             <motion.button
               onClick={() => {
                 navigator.clipboard.writeText(promoCode)

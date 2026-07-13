@@ -83,12 +83,12 @@ const Cart = () => {
             onClick={handleClose} />
 
           <motion.div
-            className="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 flex flex-col"
+            className="fixed top-0 right-0 h-[100dvh] w-full max-w-md bg-white shadow-2xl z-50 flex flex-col"
             initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 {step === 'order' && (
                   <button onClick={() => setStep('cart')} className="text-gray-400 hover:text-gray-600 transition-colors">
@@ -116,7 +116,7 @@ const Cart = () => {
             {/* Cart step */}
             {step === 'cart' && (
               <>
-                <div className="flex-1 overflow-y-auto px-6 py-4">
+                <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
                   {cart.length === 0 ? (
                     <div className="text-center text-gray-400 mt-20">
                       <p className="text-5xl mb-4">🛒</p>
@@ -129,7 +129,7 @@ const Cart = () => {
                         {cart.map(item => (
                           <motion.div key={item.id} layout
                             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
-                            className="flex items-center gap-3 p-3 rounded-xl bg-gray-50">
+                            className="flex items-center gap-2 sm:gap-3 p-3 rounded-xl bg-gray-50">
                             <div className="w-14 h-14 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
                               {item.img ? (
                                 <img src={item.img} alt={item.name}
@@ -140,10 +140,10 @@ const Cart = () => {
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="font-semibold text-sm text-gray-800 leading-tight">{item.name}</p>
+                              <p className="font-semibold text-sm text-gray-800 leading-tight line-clamp-2">{item.name}</p>
                               <p className="text-xs text-primary font-bold mt-0.5">{item.price.toFixed(2)} ₼/ədəd</p>
                             </div>
-                            <div className="flex items-center gap-1.5">
+                            <div className="flex items-center gap-1">
                               <button onClick={() => updateQty(item.id, item.qty - 1)}
                                 className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold transition-colors"
                                 style={{ background: '#f0ede9', color: '#32534c' }}>−</button>
@@ -166,7 +166,7 @@ const Cart = () => {
                 </div>
 
                 {cart.length > 0 && (
-                  <div className="border-t border-gray-100 px-6 py-5 space-y-4">
+                  <div className="border-t border-gray-100 px-4 sm:px-6 py-4 sm:py-5 space-y-4">
                     {/* Cashback info */}
                     {user ? (
                       <div className="rounded-xl p-4" style={{ background: 'linear-gradient(135deg, #f0f9f5, #e8f4ef)' }}>
@@ -293,14 +293,14 @@ const Cart = () => {
                     className="flex-1 flex flex-col"
                     initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.22 }}>
-                    <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
+                    <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 space-y-4">
                       {/* Order summary */}
                       <div className="rounded-xl p-4 bg-gray-50 space-y-1.5">
                         <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Sifariş xülasəsi</p>
                         {cart.map(i => (
-                          <div key={i.id} className="flex justify-between text-sm text-gray-600">
-                            <span>{i.name} × {i.qty}</span>
-                            <span className="font-medium">{(i.price * i.qty).toFixed(2)} ₼</span>
+                          <div key={i.id} className="flex justify-between gap-3 text-sm text-gray-600">
+                            <span className="min-w-0 break-words">{i.name} × {i.qty}</span>
+                            <span className="shrink-0 font-medium">{(i.price * i.qty).toFixed(2)} ₼</span>
                           </div>
                         ))}
                         <div className="flex justify-between text-sm font-bold text-gray-800 pt-2 border-t border-gray-200">
@@ -375,7 +375,7 @@ const Cart = () => {
                       )}
                     </div>
 
-                    <div className="border-t border-gray-100 px-6 py-5">
+                    <div className="border-t border-gray-100 px-4 sm:px-6 py-4 sm:py-5">
                       <motion.button
                         onClick={handleOrder}
                         disabled={!form.name.trim() || !form.phone.trim() || sending}

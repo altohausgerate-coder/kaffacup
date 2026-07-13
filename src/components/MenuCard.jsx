@@ -36,12 +36,12 @@ const MenuCard = ({ item, index = 0, onSelect }) => {
 
   return (
     <motion.div
-      className="group bg-white rounded-2xl overflow-hidden border border-primary/10 shadow-card card-glow cursor-pointer flex flex-col"
+      className="group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-primary/10 shadow-card card-glow cursor-pointer flex flex-col"
       whileHover={{ y: -6 }}
       transition={{ type: 'spring', stiffness: 320, damping: 24 }}
       onClick={() => onSelect?.(item)}
     >
-      <div className="relative h-[200px] overflow-hidden bg-gray-100">
+      <div className="relative h-[170px] sm:h-[200px] overflow-hidden bg-gray-100">
         {!loaded && !errored && <div className="absolute inset-0 shimmer z-10" />}
         {hasImage ? (
           <>
@@ -66,11 +66,11 @@ const MenuCard = ({ item, index = 0, onSelect }) => {
           </span>
         )}
       </div>
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-heading font-bold text-lg text-gray-800 leading-tight mb-1">{displayName}</h3>
+      <div className="p-3.5 sm:p-4 flex flex-col flex-1">
+        <h3 className="font-heading font-bold text-base sm:text-lg text-gray-800 leading-tight mb-1">{displayName}</h3>
         {displayDesc && <p className="text-xs text-gray-400 leading-relaxed line-clamp-2 mb-3 flex-1">{displayDesc}</p>}
         <div className="flex items-center mt-auto pt-3 border-t border-gray-100">
-          <span className="text-sm font-bold text-primary">{displayPrice}</span>
+          <span className="text-[13px] sm:text-sm font-bold text-primary leading-snug">{displayPrice}</span>
         </div>
       </div>
     </motion.div>

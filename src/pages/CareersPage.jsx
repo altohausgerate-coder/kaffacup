@@ -19,9 +19,9 @@ export default function CareersPage() {
     >
       <Navbar />
 
-      <div className="pt-28 pb-10 px-4 text-center">
+      <div className="pt-24 sm:pt-28 pb-6 sm:pb-10 px-4 text-center">
         <button onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-6 transition-colors"
+          className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold uppercase mb-5 sm:mb-6 transition-colors"
           style={{ color: 'rgba(200,161,56,0.75)' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>

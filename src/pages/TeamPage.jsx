@@ -18,20 +18,20 @@ export default function TeamPage() {
     >
       <Navbar />
 
-      <div className="pt-28 pb-10 px-4 text-center" style={{ background: 'linear-gradient(to bottom, #f5f2ee, #fff)' }}>
+      <div className="pt-24 sm:pt-28 pb-8 sm:pb-10 px-4 text-center" style={{ background: 'linear-gradient(to bottom, #f5f2ee, #fff)' }}>
         <button onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase mb-6 transition-colors hover:text-primary"
+          className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold uppercase mb-5 sm:mb-6 transition-colors hover:text-primary"
           style={{ color: 'rgba(200,161,56,0.85)' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
           Kaffa Cup
         </button>
-        <motion.h1 className="font-display text-primary mb-2" style={{ fontSize: 'clamp(36px, 7vw, 72px)' }}
+        <motion.h1 className="font-display text-primary mb-2 text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] leading-none" style={{ letterSpacing: 0 }}
           initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
           {t('team.title')}
         </motion.h1>
-        <motion.p className="text-gray-400 text-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+        <motion.p className="mx-auto max-w-sm text-gray-400 text-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
           {t('team.subtitle')}
         </motion.p>
         <motion.div className="h-px bg-primary/20 max-w-[80px] mx-auto mt-4"

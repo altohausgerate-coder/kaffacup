@@ -23,20 +23,20 @@ const ProductModal = ({ item, onClose }) => {
         onClick={onClose}
       />
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
         <motion.div
-          className="bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl"
-          initial={{ scale: 0.9, y: 40 }}
+          className="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-lg max-h-[92dvh] overflow-y-auto shadow-2xl"
+          initial={{ scale: 0.96, y: 80 }}
           animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.9, y: 40 }}
+          exit={{ scale: 0.96, y: 80 }}
           transition={{ type: 'spring', stiffness: 300, damping: 25 }}
         >
           <div className="relative">
-            <div className="h-[280px] overflow-hidden bg-gray-100 rounded-t-3xl">
+            <div className="h-[220px] sm:h-[280px] overflow-hidden bg-gray-100 rounded-t-3xl">
               {item.img ? (
                 <img src={item.img} alt={displayName} className="w-full h-full object-cover" style={{ objectPosition: item.imgPosition || 'center' }} loading="lazy" />
               ) : (
@@ -59,18 +59,18 @@ const ProductModal = ({ item, onClose }) => {
             )}
           </div>
 
-          <div className="p-6">
-            <h3 className="font-heading font-bold text-2xl text-gray-800 mb-2">{displayName}</h3>
+          <div className="p-5 sm:p-6">
+            <h3 className="font-heading font-bold text-xl sm:text-2xl text-gray-800 mb-2">{displayName}</h3>
             {displayDesc && <p className="text-sm text-gray-400 leading-relaxed mb-4">{displayDesc}</p>}
 
             <div className="bg-mint rounded-xl p-4 mb-6">
               <p className="text-sm text-gray-500 font-medium mb-1">{t('menu.price')}</p>
-              <p className="text-xl font-bold text-primary">{displayPrice}</p>
+              <p className="text-lg sm:text-xl font-bold text-primary leading-snug">{displayPrice}</p>
             </div>
 
             <motion.button
               onClick={onClose}
-              className="w-full bg-primary text-white font-bold py-3.5 rounded-xl text-lg hover:bg-primary-dark transition-colors"
+              className="w-full bg-primary text-white font-bold py-3.5 rounded-xl text-base sm:text-lg hover:bg-primary-dark transition-colors"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

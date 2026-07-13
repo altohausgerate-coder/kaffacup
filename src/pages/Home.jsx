@@ -55,7 +55,7 @@ const InfoStrip = () => {
           <div key={i} className="flex items-center gap-3 sm:px-10">
             <span className="text-yellow-400 shrink-0">{item.icon}</span>
             <div className="text-left">
-              <p className="text-white/50 text-xs font-medium uppercase tracking-wider">{item.label}</p>
+              <p className="text-white/50 text-xs font-medium uppercase" style={{ letterSpacing: 0 }}>{item.label}</p>
               <p className="text-white font-semibold text-sm mt-0.5">{item.value}</p>
               {item.sub && <p className="text-white/60 text-xs mt-0.5">{item.sub}</p>}
             </div>
@@ -131,11 +131,11 @@ const SectionTile = ({ tile, lang, delay = 0, className = '' }) => (
       </div>
 
       {/* Text */}
-      <div className="absolute bottom-0 left-0 right-0 p-6">
-        <p className="text-[10px] tracking-[0.25em] uppercase font-semibold mb-2" style={{ color: 'rgba(200,161,56,0.9)' }}>
+      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+        <p className="text-[10px] uppercase font-semibold mb-2" style={{ color: 'rgba(200,161,56,0.9)', letterSpacing: 0 }}>
           {tile.badge[lang] || tile.badge.az}
         </p>
-        <h2 className="font-display text-white leading-none mb-2" style={{ fontSize: 'clamp(28px, 4vw, 42px)' }}>
+        <h2 className="font-display text-white text-[2rem] sm:text-[2.625rem] leading-none mb-2">
           {tile.title[lang] || tile.title.az}
         </h2>
         <p className="text-white/55 text-sm font-body">
@@ -177,7 +177,7 @@ const CashbackBanner = () => {
           transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
         />
 
-        <div className="relative flex items-center gap-4 px-5 py-4 sm:px-7">
+        <div className="relative flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:gap-4 sm:px-7">
           {/* 5% badge */}
           <motion.div
             className="shrink-0 w-14 h-14 rounded-xl flex items-center justify-center"
@@ -210,7 +210,7 @@ const CashbackBanner = () => {
 
           {/* CTA */}
           <motion.div
-            className="shrink-0 px-4 py-2 rounded-xl text-xs font-bold text-white"
+            className="w-full shrink-0 px-4 py-2 rounded-xl text-center text-xs font-bold text-white sm:w-auto"
             style={{ background: 'rgba(200,161,56,1)' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}>
@@ -247,7 +247,7 @@ const Home = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
         >
-          <p className="text-xs tracking-[0.3em] uppercase font-semibold mb-2" style={{ color: 'rgba(200,161,56,0.85)' }}>
+          <p className="text-xs uppercase font-semibold mb-2" style={{ color: 'rgba(200,161,56,0.85)', letterSpacing: 0 }}>
             Kaffa Cup
           </p>
           <div className="h-px bg-primary/15 max-w-xs mx-auto" />
@@ -255,10 +255,10 @@ const Home = () => {
 
         {/* Grid: large left tile + 2 right tiles */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4">
-          <div className="lg:col-span-7 h-[420px] lg:h-[560px]">
+          <div className="lg:col-span-7 h-[320px] sm:h-[420px] lg:h-[560px]">
             <SectionTile tile={tiles[0]} lang={lang} delay={0} className="h-full" />
           </div>
-          <div className="lg:col-span-5 grid grid-rows-2 gap-4 h-[420px] lg:h-[560px]">
+          <div className="lg:col-span-5 grid grid-rows-2 gap-4 h-[360px] sm:h-[420px] lg:h-[560px]">
             <SectionTile tile={tiles[1]} lang={lang} delay={0.08} className="h-full" />
             <SectionTile tile={tiles[2]} lang={lang} delay={0.14} className="h-full" />
           </div>
@@ -266,8 +266,8 @@ const Home = () => {
 
         {/* Bottom row: 2 equal tiles */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <SectionTile tile={tiles[3]} lang={lang} delay={0.18} className="h-[280px]" />
-          <SectionTile tile={tiles[4]} lang={lang} delay={0.22} className="h-[280px]" />
+          <SectionTile tile={tiles[3]} lang={lang} delay={0.18} className="h-[240px] sm:h-[280px]" />
+          <SectionTile tile={tiles[4]} lang={lang} delay={0.22} className="h-[240px] sm:h-[280px]" />
         </div>
       </section>
 

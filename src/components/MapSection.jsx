@@ -5,10 +5,10 @@ const MapSection = () => {
   const { t } = useLang()
 
   return (
-    <section className="py-20 px-4 bg-white" id="contact">
+    <section className="py-12 sm:py-20 px-4 bg-white" id="contact">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <motion.h2 className="text-4xl md:text-5xl font-heading font-bold text-primary"
+        <div className="text-center mb-8 sm:mb-12">
+          <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-primary"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             {t('contact.title')}
           </motion.h2>
@@ -16,8 +16,8 @@ const MapSection = () => {
             initial={{ width: 0 }} whileInView={{ width: '100%' }} viewport={{ once: true }} transition={{ duration: 0.8 }} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <motion.div className="lg:col-span-2 overflow-hidden h-[450px]"
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-8">
+          <motion.div className="lg:col-span-2 overflow-hidden h-[320px] sm:h-[450px]"
             initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <iframe
               src="https://www.google.com/maps?q=40.5948822,49.6658407&z=16&output=embed"
@@ -25,7 +25,7 @@ const MapSection = () => {
               allowFullScreen loading="lazy" title="Kaffa Cup location" />
           </motion.div>
 
-          <motion.div className="bg-primary rounded-2xl p-8 text-white flex flex-col justify-center gap-5 shadow-lg"
+          <motion.div className="bg-primary rounded-2xl p-5 sm:p-8 text-white flex flex-col justify-center gap-5 shadow-lg"
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <div>
               <h4 className="font-heading font-semibold text-lg mb-2">📍 {t('contact.address')}</h4>

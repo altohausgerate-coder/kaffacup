@@ -29,37 +29,37 @@ const ExteriorPhotos = () => {
   ]
 
   return (
-    <section className="py-20 px-4 bg-mint" id="gallery">
+    <section className="py-14 sm:py-20 px-4 bg-mint" id="gallery">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <motion.h2 className="text-4xl md:text-5xl font-heading font-bold text-primary"
+        <div className="text-center mb-8 sm:mb-12">
+          <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-primary"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             {t('gallery.title')}
           </motion.h2>
-          <motion.p className="text-gray-400 mt-2 font-body" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
+          <motion.p className="mx-auto max-w-sm text-gray-400 mt-2 text-sm sm:text-base font-body" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
             {t('gallery.subtitle')}
           </motion.p>
           <motion.div className="h-0.5 bg-primary/30 rounded-full mx-auto mt-3" style={{ maxWidth: 80 }}
             initial={{ width: 0 }} whileInView={{ width: '100%' }} viewport={{ once: true }} transition={{ duration: 0.8 }} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {exteriorCards.map((card, i) => {
             const y = [y1, y2, y3][i]
             return (
               <motion.div key={i}
-                className="relative h-[450px] rounded-2xl overflow-hidden cursor-pointer group"
+                className="relative h-[320px] sm:h-[450px] rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer group"
                 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ delay: i * 0.12, type: 'spring', stiffness: 150 }}
                 whileHover={{ scale: 1.03 }}
               >
                 <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${card.image})` }} />
                 <motion.div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-[1]" style={{ y }} />
-                <div className="absolute top-5 left-5 z-[2]" style={{ y }}>
-                  <GoatLogo size={44} animate={false} />
+                <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-[2]" style={{ y }}>
+                  <GoatLogo size={40} animate={false} />
                 </div>
-                <div className="absolute bottom-6 left-6 z-[2] text-white" style={{ y }}>
-                  <p className="font-heading font-bold text-2xl drop-shadow-lg">{card.label}</p>
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-[2] text-white" style={{ y }}>
+                  <p className="font-heading font-bold text-xl sm:text-2xl drop-shadow-lg">{card.label}</p>
                   <p className="text-sm text-white/70 mt-1 drop-shadow">{card.sub}</p>
                 </div>
               </motion.div>
@@ -74,13 +74,13 @@ const ExteriorPhotos = () => {
 const TeamSection = () => {
   const { t } = useLang()
   return (
-    <section className="py-16 px-4 bg-mint" id="team">
+    <section className="py-12 sm:py-16 px-4 bg-mint" id="team">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <motion.h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2"
+          <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-primary mb-2 text-center"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             {t('team.title')}
           </motion.h2>
-          <motion.p className="text-gray-400 font-body mb-8"
+          <motion.p className="text-gray-400 font-body mb-6 sm:mb-8 text-sm sm:text-base text-center"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
             {t('team.subtitle')}
         </motion.p>
@@ -112,11 +112,11 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-[#1a3d30] text-white/80 py-10 px-4">
+    <footer className="bg-[#1a3d30] text-white/80 py-8 sm:py-10 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 mb-8">
           {/* Column 1: Logo + description */}
-          <motion.div className="flex flex-col items-start gap-2"
+          <motion.div className="flex flex-col items-center md:items-start text-center md:text-left gap-2"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <motion.div style={{ y: goatY }}><GoatLogo size={48} /></motion.div>
             <span className="font-heading font-bold text-base text-white">KAFFA CUP</span>
@@ -127,7 +127,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Column 2: Links */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+          <motion.div className="text-center md:text-left" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
             <h4 className="font-heading font-semibold text-white mb-2 text-sm">{t('footer.links')}</h4>
             <nav className="flex flex-col gap-1.5">
               {navLinks.map(l => (
@@ -140,25 +140,25 @@ const Footer = () => {
           </motion.div>
 
           {/* Column 3: Contact */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+          <motion.div className="text-center md:text-left" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <h4 className="font-heading font-semibold text-white mb-2 text-sm">{t('footer.contact')}</h4>
             <div className="flex flex-col gap-2">
               <p className="text-xs leading-relaxed">
                 Sumqayıt şəhəri<br />Azərbaycan prospekti 13/16
               </p>
               <a href="https://www.google.com/maps?q=40.5948822,49.6658407" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-white/60 hover:text-white transition-colors">
+                className="inline-flex items-center justify-center md:justify-start gap-1 text-xs text-white/60 hover:text-white transition-colors">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
                 {t('footer.maps')}
               </a>
               <a href="tel:+994517326959" className="text-xs hover:text-white transition-colors">+994 51 732 69 59</a>
               <a href="https://www.instagram.com/kaffacupcoffee/" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs hover:text-white transition-colors">
+                className="inline-flex items-center justify-center md:justify-start gap-2 text-xs hover:text-white transition-colors">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
                 @kaffacupcoffee
               </a>
               <a href="https://wolt.com/en/aze/sumgait/restaurant/kaffa-cup" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs hover:text-white transition-colors">
+                className="inline-flex items-center justify-center md:justify-start gap-2 text-xs hover:text-white transition-colors">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
                 {t('footer.wolt')}
               </a>
@@ -176,7 +176,7 @@ const Footer = () => {
           </svg>
         </motion.div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <p className="text-xs text-white/40">{t('footer.copyright')}</p>
           <div className="flex items-center gap-4">
             <a href="/mexfilik-siyaseti"
@@ -197,14 +197,14 @@ const Footer = () => {
 const IntroVideo = () => {
   return (
     <section className="bg-mint" id="intro-video">
-      <div className="flex justify-center px-4 py-10">
+      <div className="flex justify-center px-4 py-8 sm:py-10">
         <motion.div
           className="w-full max-w-[800px]"
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           transition={{ type: 'spring', stiffness: 150 }}
         >
           <video controls loop playsInline
-            className="w-full aspect-video rounded-2xl object-cover shadow-xl">
+            className="w-full aspect-video rounded-xl sm:rounded-2xl object-cover shadow-xl">
             <source src="/kaffa-intro.mp4.mp4" type="video/mp4" />
           </video>
         </motion.div>
@@ -226,10 +226,10 @@ const googleMapsUrl = 'https://www.google.com/maps?q=KaffaCup+Coffee,+13/16,+16+
 const Reviews = () => {
   const { t } = useLang()
   return (
-    <section className="py-16 px-4 bg-cream" id="reviews">
+    <section className="py-12 sm:py-16 px-4 bg-cream" id="reviews">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
-          <motion.h2 className="text-4xl md:text-5xl font-heading font-bold text-primary"
+        <div className="text-center mb-8 sm:mb-10">
+          <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-primary"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             {t('reviews.title')}
           </motion.h2>
@@ -242,10 +242,10 @@ const Reviews = () => {
             initial={{ width: 0 }} whileInView={{ width: '100%' }} viewport={{ once: true }} transition={{ duration: 0.8 }} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {reviews.map((r, i) => (
             <motion.div key={i}
-              className="bg-white rounded-2xl shadow-md p-6 flex flex-col"
+              className="bg-white rounded-xl sm:rounded-2xl shadow-md p-4 sm:p-6 flex flex-col"
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: i * 0.1, type: 'spring', stiffness: 150 }}
             >

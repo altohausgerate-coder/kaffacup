@@ -14,12 +14,6 @@ const steamParticles = [
   { x: '51%', delay: 1.8, size: 5  },
 ]
 
-const container = { hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.9 } } }
-const letterItem = {
-  hidden: { y: 60, opacity: 0, filter: 'blur(8px)' },
-  visible: { y: 0, opacity: 1, filter: 'blur(0px)', transition: { type: 'spring', stiffness: 160, damping: 20 } },
-}
-
 const Hero = () => {
   const { scrollYProgress } = useScroll()
   const heroScale   = useTransform(scrollYProgress, [0, 0.35], [1,    0.92])
@@ -66,7 +60,7 @@ const Hero = () => {
 
   return (
     <motion.section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden grain-overlay"
+      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden grain-overlay"
       style={{ scale: heroScale, opacity: heroOpacity }}
     >
       {/* Background */}
@@ -102,10 +96,10 @@ const Hero = () => {
       ))}
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 pt-16">
+      <div className="absolute inset-x-0 top-1/2 z-10 mx-auto flex w-full max-w-5xl -translate-y-1/2 flex-col items-center text-center px-4">
 
         <motion.div
-          className="mb-6"
+          className="mb-5 sm:mb-6"
           initial={{ scale: 0.4, opacity: 0, filter: 'blur(12px)' }}
           animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
@@ -117,64 +111,42 @@ const Hero = () => {
               animate={{ scale: [1, 1.18, 1], opacity: [0.6, 1, 0.6] }}
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             />
-            <GoatLogo size={116} />
+            <GoatLogo size={96} className="sm:scale-110" />
           </div>
         </motion.div>
 
-        <motion.div
-          className="flex items-center gap-3 mb-7 w-48"
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ delay: 0.7, duration: 0.7, ease: 'easeOut' }}
-        >
+        <div className="flex items-center gap-3 mb-6 sm:mb-7 w-40 sm:w-48">
           <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(200,161,56,0.7))' }} />
           <div className="w-1 h-1 rounded-full" style={{ background: 'rgba(200,161,56,0.9)' }} />
           <div className="h-px flex-1" style={{ background: 'linear-gradient(to left, transparent, rgba(200,161,56,0.7))' }} />
-        </motion.div>
+        </div>
 
-        <motion.p
-          className="text-[11px] tracking-[0.35em] font-semibold mb-4"
-          style={{ color: 'rgba(200,161,56,0.85)', fontFamily: "'Nunito Sans', sans-serif", textTransform: 'uppercase' }}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.75, duration: 0.6 }}
+        <p
+          className="text-[10px] sm:text-[11px] font-semibold mb-4"
+          style={{ color: 'rgba(200,161,56,0.85)', fontFamily: "'Nunito Sans', sans-serif", textTransform: 'uppercase', letterSpacing: 0 }}
         >
           {t('hero.label')}
-        </motion.p>
+        </p>
 
-        <motion.h1
-          className="font-display text-white mb-5 leading-none"
+        <h1
+          className="font-display text-white mb-5 leading-none text-[2.45rem] sm:text-[4.75rem] md:text-[6rem] lg:text-[7.5rem]"
           style={{
-            fontSize: 'clamp(68px, 11vw, 120px)',
-            letterSpacing: '0.06em',
+            letterSpacing: 0,
             textShadow: '0 2px 40px rgba(0,0,0,0.5)',
           }}
-          variants={container}
-          initial="hidden"
-          animate="visible"
         >
-          {'KAFFA CUP'.split('').map((l, i) => (
-            <motion.span key={i} variants={letterItem} className="inline-block" style={{ marginRight: l === ' ' ? '0.3em' : undefined }}>
-              {l === ' ' ? ' ' : l}
-            </motion.span>
-          ))}
-        </motion.h1>
+          KAFFA CUP
+        </h1>
 
-        <motion.p
-          className="text-base sm:text-lg md:text-xl font-light mb-10 max-w-md"
-          style={{ color: 'rgba(255,255,255,0.72)', letterSpacing: '0.02em', lineHeight: 1.7 }}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.7 }}
+        <p
+          className="text-sm sm:text-lg md:text-xl font-light mb-8 sm:mb-10 max-w-[20rem] sm:max-w-md"
+          style={{ color: 'rgba(255,255,255,0.72)', letterSpacing: 0, lineHeight: 1.65 }}
         >
           {t('hero.subtitle')}
-        </motion.p>
+        </p>
 
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-3 mb-14"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.75, duration: 0.6 }}
+        <div
+          className="flex w-full max-w-xs flex-col items-stretch justify-center gap-3 mb-10 sm:mb-14 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center"
         >
           {quickLinks.map((link, i) =>
             link.external ? (
@@ -183,7 +155,7 @@ const Hero = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full backdrop-blur-md transition-all"
+                className="inline-flex min-h-11 items-center justify-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full backdrop-blur-md transition-all"
                 style={{
                   background: 'rgba(255,255,255,0.08)',
                   border: '1px solid rgba(255,255,255,0.18)',
@@ -198,7 +170,7 @@ const Hero = () => {
               <motion.button
                 key={i}
                 onClick={link.action}
-                className="inline-flex items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full backdrop-blur-md transition-all"
+                className="inline-flex min-h-11 items-center justify-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full backdrop-blur-md transition-all"
                 style={{
                   background: i === 0 ? 'rgba(200,161,56,0.18)' : 'rgba(255,255,255,0.08)',
                   border: i === 0 ? '1px solid rgba(200,161,56,0.45)' : '1px solid rgba(255,255,255,0.18)',
@@ -211,14 +183,14 @@ const Hero = () => {
               </motion.button>
             )
           )}
-        </motion.div>
+        </div>
 
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
           <button onClick={handleScroll} className="flex flex-col items-center gap-2">
-            <span className="text-[10px] tracking-[0.25em] uppercase" style={{ color: 'rgba(255,255,255,0.4)' }}>{t('hero.scroll')}</span>
+            <span className="text-[10px] uppercase" style={{ color: 'rgba(255,255,255,0.4)', letterSpacing: 0 }}>{t('hero.scroll')}</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M6 9l6 6 6-6" />
             </svg>
