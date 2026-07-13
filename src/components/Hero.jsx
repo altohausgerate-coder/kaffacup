@@ -109,7 +109,15 @@ const Hero = () => {
           {t('hero.label')}
         </p>
 
-        <h1 className="sr-only">KAFFA CUP</h1>
+        <h1
+          className="font-heading font-black text-white mb-4 sm:mb-5 leading-[0.92] whitespace-nowrap text-[2.2rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7.5rem]"
+          style={{
+            letterSpacing: 0,
+            textShadow: '0 2px 40px rgba(0,0,0,0.5)',
+          }}
+        >
+          Kaffa Cup
+        </h1>
 
         <p
           className="text-sm sm:text-lg md:text-xl font-light mb-8 sm:mb-10 max-w-[20rem] sm:max-w-md"
@@ -119,7 +127,7 @@ const Hero = () => {
         </p>
 
         <div
-          className="flex w-full max-w-xs flex-col items-stretch justify-center gap-3 mb-10 sm:mb-14 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center"
+          className="flex w-full max-w-[11rem] flex-col items-stretch justify-center gap-3 mb-10 sm:mb-14 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center"
         >
           {quickLinks.map((link, i) =>
             link.external ? (
@@ -128,7 +136,7 @@ const Hero = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full backdrop-blur-md transition-all"
+                className="inline-flex min-h-10 items-center justify-center gap-2 text-white text-xs sm:text-sm font-medium px-4 sm:px-5 py-2 rounded-full backdrop-blur-md transition-all"
                 style={{
                   background: 'rgba(255,255,255,0.08)',
                   border: '1px solid rgba(255,255,255,0.18)',
@@ -143,7 +151,7 @@ const Hero = () => {
               <motion.button
                 key={i}
                 onClick={link.action}
-                className="inline-flex min-h-11 items-center justify-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full backdrop-blur-md transition-all"
+                className="inline-flex min-h-10 items-center justify-center gap-2 text-white text-xs sm:text-sm font-medium px-4 sm:px-5 py-2 rounded-full backdrop-blur-md transition-all"
                 style={{
                   background: i === 0 ? 'rgba(200,161,56,0.18)' : 'rgba(255,255,255,0.08)',
                   border: i === 0 ? '1px solid rgba(200,161,56,0.45)' : '1px solid rgba(255,255,255,0.18)',
