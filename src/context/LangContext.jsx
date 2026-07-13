@@ -154,7 +154,7 @@ const translations = {
     'careers.pos.kitchen': 'Mətbəx işçisi',
     'careers.pos.courier': 'Çatdırılma kuryer',
     'careers.pos.other': 'Digər',
-    'careers.form.title': 'Müraciət Et',
+    'careers.form.title': 'Sorğu yolla',
     'careers.form.desc': 'Formu doldurun, WhatsApp vasitəsilə bizimlə əlaqə saxlayın',
     'careers.form.name': 'Ad Soyad *',
     'careers.form.name.ph': 'Məsələn: Aytən Hüseynova',
