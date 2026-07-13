@@ -155,8 +155,8 @@ export const bagetteItems = [
 ]
 
 export const bowlItems = [
-  { id: 'bo1', name: 'Chicken Bowl', nameEn: 'Chicken Bowl', nameRu: 'Боул с Курицей', desc: 'Tost çörəyi, toyuq filesi, düyü, iceberg, qırmızı kələm, xiyar, qarğıdalı, lobya, çerri pomidor, karri sous', descEn: 'Toast bread, chicken fillet, rice, iceberg, red cabbage, cucumber, corn, beans, cherry tomato, curry sauce', descRu: 'Тостовый хлеб, куриное филе, рис, айсберг, красная капуста, огурец, кукуруза, фасоль, черри, соус карри', price: 11.90, img: MENU_IMAGES.bowlToyuq, category: 'bowls', available: true },
-  { id: 'bo2', name: 'Chicken Bowl Barbecue', nameEn: 'Chicken BBQ Bowl', nameRu: 'Боул с Курицей BBQ', desc: 'Tost çörəyi, toyuq filesi, düyü, iceberg, qırmızı kələm, xiyar, qarğıdalı, lobya, çerri pomidor, BBQ sous', descEn: 'Toast bread, chicken fillet, rice, iceberg, red cabbage, cucumber, corn, beans, cherry tomato, BBQ sauce', descRu: 'Тостовый хлеб, куриное филе, рис, айсберг, красная капуста, огурец, кукуруза, фасоль, черри, соус BBQ', price: 11.90, img: MENU_IMAGES.bowlBbq, category: 'bowls', available: true },
+  { id: 'bo1', name: 'Chicken Bowl', nameEn: 'Chicken Bowl', nameRu: 'Боул с Курицей', desc: 'Toyuq filesi, düyü, iceberg, qırmızı kələm, xiyar, qarğıdalı, lobya, çerri pomidor, karri sous', descEn: 'Chicken fillet, rice, iceberg, red cabbage, cucumber, corn, beans, cherry tomato, curry sauce', descRu: 'Куриное филе, рис, айсберг, красная капуста, огурец, кукуруза, фасоль, черри, соус карри', price: 11.90, img: MENU_IMAGES.bowlToyuq, category: 'bowls', available: true },
+  { id: 'bo2', name: 'Chicken Bowl Barbecue', nameEn: 'Chicken BBQ Bowl', nameRu: 'Боул с Курицей BBQ', desc: 'Toyuq filesi, düyü, iceberg, qırmızı kələm, xiyar, qarğıdalı, lobya, çerri pomidor, BBQ sous', descEn: 'Chicken fillet, rice, iceberg, red cabbage, cucumber, corn, beans, cherry tomato, BBQ sauce', descRu: 'Куриное филе, рис, айсберг, красная капуста, огурец, кукуруза, фасоль, черри, соус BBQ', price: 11.90, img: MENU_IMAGES.bowlBbq, category: 'bowls', available: true },
 ]
 
 export const dessertItems = [
