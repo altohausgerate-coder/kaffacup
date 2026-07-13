@@ -1,21 +1,21 @@
-const MENU_IMAGE_VERSION = '20260713-7'
+const MENU_IMAGE_VERSION = '20260713-9'
 
 const LOCAL_IMAGE_OVERRIDES = {
-  s1: '/images/qarisiq-yemek-asli.jpg',
-  s2: '/images/salat.jpg',
-  s3: '/images/sezar-salati.jpg',
-  s4: '/images/salat.jpg',
-  s5: '/images/menu/salad-meat.jpg',
-  sw1: '/images/menu/croissant-sandwich.jpg',
-  sw2: '/images/menu/croissant-salmon.jpg',
-  sw3: '/images/menu/croissant-classic.jpg',
-  sw4: '/images/menu/croissant-sandwich.jpg',
-  sw5: '/images/menu/sandwich-meat.png',
-  sw6: '/images/menu/sandwich-meat.png',
-  sw7: '/images/menu/sandwich-cheese.png',
-  sw8: '/images/menu/sandwich-kaffa.png',
-  sw9: '/images/menu/bagette-vegeterian.png',
-  d3: '/images/napaleon-desert.jpg',
+  s1: '/images/food/qarisiq-yemek-asli.jpg',
+  s2: '/images/food/salat.jpg',
+  s3: '/images/food/sezar-salati.jpg',
+  s4: '/images/food/salat.jpg',
+  s5: '/images/food/meat-salad.png',
+  sw1: '/images/food/sendwich-etli.png',
+  sw2: '/images/food/sendwich-etli.png',
+  sw3: '/images/food/sendwich-etli.png',
+  sw4: '/images/food/kaffa-baggate.png',
+  sw5: '/images/food/kaffa-baggate.png',
+  sw6: '/images/food/sendwich-etli.png',
+  sw7: '/images/food/cheese-sandwich.png',
+  sw8: '/images/food/kaffa-baggate.png',
+  sw9: '/images/food/vegeterian-bagette.png',
+  d3: '/images/food/sniker-tort.jpg',
   d8: '/images/menu/dessert-waffle-shokoladli.png',
   d9: '/images/menu/dessert-waffle-meyveli.png',
   d10: '/images/menu/dessert-waffle-dondurmali-sade.png',
@@ -52,10 +52,10 @@ const versionedMenuAsset = (src) => withVersion(toFastMenuImage(src))
 export const getMenuFallbackImage = (item = {}) => {
   const cat = item.category || ''
   if (cat === 'rolls') return '/images/menu/roll-kaffa.jpg'
-  if (cat === 'salads') return '/images/salat.jpg'
-  if (cat === 'sandwich') return '/images/menu/sandwich-kaffa.png'
+  if (cat === 'salads') return '/images/food/salat.jpg'
+  if (cat === 'sandwich') return '/images/food/sendwich-etli.png'
   if (cat === 'bowls') return '/images/menu/bowl-toyuq.jpg'
-  if (cat === 'desserts') return '/images/napaleon-desert.jpg'
+  if (cat === 'desserts') return '/images/food/sniker-tort.jpg'
   if (cat === 'coffee-hot') return '/images/menu/coffee-latte.png'
   if (cat === 'coffee-cold') return '/images/menu/kaffa-iced-coffee.jpg'
   if (cat === 'drinks') return '/images/menu/drinks/lemonade-strawberry.png'
