@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
+import MenuSection from '../components/MenuSection'
 import Footer from '../components/Footer'
 import { useLang } from '../context/LangContext'
 import { useCustomerAuth } from '../context/CustomerAuthContext'
@@ -72,7 +73,7 @@ const tiles = [
     image: '/images/qarisiq-yemek-asli.jpg',
     badge: { az: 'Yeməklər & İçkilər', ru: 'Еда и Напитки', en: 'Food & Drinks' },
     title: { az: 'Menyu', ru: 'Меню', en: 'Menu' },
-    desc: { az: 'Səhər yeməyindən deserə — hər şey burada', ru: 'От завтрака до десерта', en: 'From breakfast to dessert' },
+    desc: { az: 'İçkilərdən yeməklərə hər şey burada', ru: 'Всё здесь — от напитков до блюд', en: 'Everything here, from drinks to dishes' },
     large: true,
   },
   {
@@ -270,6 +271,8 @@ const Home = () => {
           <SectionTile tile={tiles[4]} lang={lang} delay={0.22} className="h-[240px] sm:h-[280px]" />
         </div>
       </section>
+
+      <MenuSection />
 
       <Footer />
     </motion.div>
