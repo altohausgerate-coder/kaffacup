@@ -136,7 +136,7 @@ const translations = {
 
     // Careers
     'careers.label': 'Kaffa Cup · Komanda',
-    'careers.title': 'Bizimlə İşlə',
+    'careers.title': 'Komandamıza Qoşul',
     'careers.desc': 'Kaffa Cup ailəsinə qoşul — Sumqayıtın ən sevimli qəhvə məkanında enerjik bir komandanın hissəsi ol.',
     'careers.perk1.title': 'Komanda ruhu',
     'careers.perk1.desc': 'Mehriban, energetik bir komanda ilə çiyin-çiyinə işləyərsən',
