@@ -1,16 +1,27 @@
-const MENU_IMAGE_VERSION = '20260713-5'
+const MENU_IMAGE_VERSION = '20260713-6'
 
 const LOCAL_IMAGE_OVERRIDES = {
   s1: '/images/qarisiq-yemek-asli.jpg',
   s2: '/images/salat.jpg',
   s3: '/images/sezar-salati.jpg',
   s4: '/images/salat.jpg',
+  s5: '/images/menu/salad-meat.jpg',
   sw1: '/images/menu/sandwich-kaffa.png',
   sw2: '/images/menu/sandwich-kaffa.png',
   sw3: '/images/menu/sandwich-meat.png',
   sw4: '/images/menu/sandwich-kaffa.png',
   sw5: '/images/menu/sandwich-meat.png',
+  sw6: '/images/menu/sandwich-meat.png',
+  sw7: '/images/menu/sandwich-cheese.png',
+  sw8: '/images/menu/sandwich-kaffa.png',
+  sw9: '/images/menu/bagette-vegeterian.png',
   d3: '/images/sniker-tort.jpg',
+  d8: '/images/menu/dessert-waffle-shokoladli.png',
+  d9: '/images/menu/dessert-waffle-meyveli.png',
+  d10: '/images/menu/dessert-waffle-dondurmali-sade.png',
+  d11: '/images/menu/dessert-waffle-dondurmali-shokoladli.png',
+  d5: '/images/menu/dessert-dondurma-maras.png',
+  d6: '/images/menu/dessert-dondurma-servis.png',
   ex1: '/images/menu/coffee-latte.png',
   ex2: '/images/menu/dessert-dondurma-servis.png',
   ex3: '/images/menu/drinks/lemonade-strawberry.png',
