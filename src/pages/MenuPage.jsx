@@ -179,7 +179,7 @@ export default function MenuPage({ initialTab = 'all' }) {
             transition={{ duration: 0.18 }}
           >
             {sections.length > 0 ? (
-              sections.map((section) => (
+              sections.map((section, sectionIndex) => (
                 <section key={section.id} className="mb-10 sm:mb-12 scroll-mt-32">
                   <div className="relative text-center mb-5 border-b border-primary/10 pb-3">
                     <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-primary">
