@@ -18,19 +18,12 @@ const perkIcons = [
       <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
     </svg>
   ),
-  (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-      <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
-    </svg>
-  ),
 ]
 
 const perkKeys = [
   { title: 'careers.perk1.title', desc: 'careers.perk1.desc' },
   { title: 'careers.perk2.title', desc: 'careers.perk2.desc' },
   { title: 'careers.perk3.title', desc: 'careers.perk3.desc' },
-  { title: 'careers.perk4.title', desc: 'careers.perk4.desc' },
 ]
 
 const positionKeys = [
