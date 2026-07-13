@@ -102,7 +102,7 @@ const tiles = [
     image: '/İmages/gallery3.jpg.webp',
     badge: { az: 'Karyera', ru: 'Карьера', en: 'Career' },
     title: { az: 'Vakansiya', ru: 'Вакансии', en: 'Careers' },
-    desc: { az: 'Bizimlə işlə, inkişaf et', ru: 'Работай с нами', en: 'Work with us' },
+    desc: { az: 'Komandaya qoşul, inkişaf et', ru: 'Работай с нами', en: 'Work with us' },
   },
 ]
 
