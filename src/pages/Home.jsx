@@ -49,14 +49,16 @@ const InfoStrip = () => {
   ]
 
   return (
-    <div className="bg-primary py-5 px-4">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0 sm:divide-x sm:divide-white/20">
+    <div className="bg-primary py-8 px-4">
+      <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-4 sm:gap-x-2 sm:divide-x sm:divide-white/15">
         {infoItems.map((item, i) => (
-          <div key={i} className="flex items-center gap-3 sm:px-10">
-            <span className="text-yellow-400 shrink-0">{item.icon}</span>
-            <div className="text-left">
-              <p className="text-white/50 text-xs font-medium uppercase" style={{ letterSpacing: 0 }}>{item.label}</p>
-              <p className="text-white font-semibold text-sm mt-0.5">{item.value}</p>
+          <div key={i} className="flex flex-col items-center text-center gap-2 sm:px-6">
+            <span className="w-11 h-11 rounded-full bg-white/10 text-yellow-400 flex items-center justify-center shrink-0">
+              {item.icon}
+            </span>
+            <div>
+              <p className="text-white/50 text-[11px] font-medium uppercase" style={{ letterSpacing: 0.5 }}>{item.label}</p>
+              <p className="text-white font-semibold text-sm mt-1">{item.value}</p>
               {item.sub && <p className="text-white/60 text-xs mt-0.5">{item.sub}</p>}
             </div>
           </div>
