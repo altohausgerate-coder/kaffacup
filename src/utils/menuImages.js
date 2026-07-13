@@ -1,7 +1,7 @@
-const MENU_IMAGE_VERSION = '20260713-3'
+const MENU_IMAGE_VERSION = '20260713-4'
 
 const LOCAL_IMAGE_OVERRIDES = {
-  s1: '/images/salat.jpg',
+  s1: '/images/qarisiq-yemek-asli.jpg',
   s2: '/images/salat.jpg',
   s3: '/images/sezar-salati.jpg',
   s4: '/images/salat.jpg',

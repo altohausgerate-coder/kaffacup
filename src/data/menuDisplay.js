@@ -1,5 +1,5 @@
 import {
-  rollsItems, saladItems, sandwichItems, bowlItems, dessertItems,
+  rollsItems, saladItems, sandwichItems, bagetteItems, bowlItems, dessertItems,
   classicCoffee, alternativeCoffee, icedCoffee,
   lemonadeItems, smoothieItems, iceTeaItems,
   cocktailItems, mocktailItems,
@@ -36,6 +36,7 @@ export const menuDisplaySections = [
   { id: 'rolls', tabs: ['all', 'foods'], titleKey: 'menu.heading.rolls', items: rollsItems, emoji: '🌯' },
   { id: 'salads', tabs: ['all', 'foods'], titleKey: 'menu.heading.salads', items: saladItems, emoji: '🥗' },
   { id: 'sandwich', tabs: ['all', 'foods'], titleKey: 'menu.heading.sandwich', items: sandwichItems, emoji: '🥖' },
+  { id: 'bagettes', tabs: ['all', 'foods'], titleKey: 'menu.heading.bagettes', items: bagetteItems, emoji: '🥖' },
   { id: 'bowls', tabs: ['all', 'foods'], titleKey: 'menu.heading.bowls', items: bowlItems, emoji: '🥙' },
   { id: 'desserts', tabs: ['all', 'desserts'], titleKey: 'menu.heading.desserts', items: dessertItems, emoji: '🍰' },
   { id: 'specials', tabs: ['all', 'specials'], titleKey: 'menu.heading.specials', items: specialOfferItems, emoji: '⭐', renderAs: 'specials' },
