@@ -207,7 +207,7 @@ const Navbar = () => {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-5">
             {navLinks.map(l => (
-              <Link key={l.to} to={l.to}
+              <Link key={l.to} to={l.to} reloadDocument={l.to === '/menu'}
                 className={`text-sm font-semibold transition-colors ${location.pathname === l.to ? 'text-[rgba(200,161,56,1)]' : 'text-white hover:text-[rgba(200,161,56,1)]'}`}>
                 {l.label}
               </Link>
@@ -347,7 +347,7 @@ const Navbar = () => {
               <motion.div key={l.to}
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
                 transition={{ delay: i * 0.07 }}>
-                <Link to={l.to} onClick={() => setMenuOpen(false)}
+                <Link to={l.to} reloadDocument={l.to === '/menu'} onClick={() => setMenuOpen(false)}
                   className="block rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-center text-xl font-heading font-semibold text-white/90">
                   {l.label}
                 </Link>

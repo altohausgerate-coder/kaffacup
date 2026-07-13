@@ -74,6 +74,7 @@ const tiles = [
     title: { az: 'Menyu', ru: 'Меню', en: 'Menu' },
     desc: { az: 'İçkilərdən yeməklərə hər şey burada', ru: 'Всё здесь — от напитков до блюд', en: 'Everything here, from drinks to dishes' },
     large: true,
+    reloadDocument: true,
   },
   {
     to: '/gallery',
@@ -113,7 +114,7 @@ const SectionTile = ({ tile, lang, delay = 0, className = '' }) => (
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
   >
-    <Link to={tile.to} className="block w-full h-full">
+    <Link to={tile.to} reloadDocument={tile.reloadDocument} className="block w-full h-full">
       <img
         src={tile.image}
         alt={tile.title[lang] || tile.title.az}
