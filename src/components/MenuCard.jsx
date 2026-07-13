@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useLang } from '../context/LangContext'
 
@@ -19,8 +19,6 @@ const MenuCard = ({ item, index = 0, onSelect }) => {
   const [loaded, setLoaded] = useState(false)
   const [errored, setErrored] = useState(false)
   const { lang, t } = useLang()
-  const imgRef = useRef(null)
-  const placeholderRef = useRef(null)
 
   const displayName = lang === 'ru' ? (item.nameRu || item.name) : lang === 'en' ? (item.nameEn || item.name) : item.name
   const displayDesc = lang === 'ru' ? (item.descRu || item.desc) : lang === 'en' ? (item.descEn || item.desc) : item.desc
@@ -30,9 +28,13 @@ const MenuCard = ({ item, index = 0, onSelect }) => {
 
   const handleError = (e) => {
     setErrored(true)
-    if (e.target) e.target.style.display = 'none'
-    if (placeholderRef.current) placeholderRef.current.style.display = 'flex'
   }
+
+  useEffect(() => {
+    if (!hasImage || loaded || errored) return undefined
+    const timer = window.setTimeout(() => setErrored(true), 7000)
+    return () => window.clearTimeout(timer)
+  }, [hasImage, loaded, errored])
 
   return (
     <motion.div
@@ -45,13 +47,19 @@ const MenuCard = ({ item, index = 0, onSelect }) => {
         {!loaded && !errored && <div className="absolute inset-0 shimmer z-10" />}
         {hasImage ? (
           <>
-            <img ref={imgRef} src={item.img} alt={displayName}
+            <img src={item.img} alt={displayName}
               className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${loaded && !errored ? 'opacity-100' : 'opacity-0'}`}
               style={{ objectPosition: item.imgPosition || 'center' }}
-              onLoad={() => setLoaded(true)} onError={handleError} loading="lazy" />
-            <div ref={placeholderRef} style={{ display: 'none', width: '100%', height: '100%', background: item.category === 'rolls' ? '#3d1f0d' : 'linear-gradient(135deg, #2D5F4E, #4a8a72)', alignItems: 'center', justifyContent: 'center', fontSize: '48px' }}>
-              {getEmoji(item)}
-            </div>
+              onLoad={() => setLoaded(true)} onError={handleError}
+              loading={index < 4 ? 'eager' : 'lazy'}
+              fetchPriority={index < 4 ? 'high' : 'low'}
+              decoding="async" />
+            {errored && (
+              <div className="absolute inset-0 flex items-center justify-center text-6xl"
+                style={{ background: item.category === 'rolls' ? '#3d1f0d' : 'linear-gradient(135deg, #2D5F4E, #4a8a72)' }}>
+                {getEmoji(item)}
+              </div>
+            )}
           </>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-6xl" style={{ background: 'linear-gradient(135deg, #2D5F4E, #4a8a72)' }}>

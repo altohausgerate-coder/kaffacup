@@ -31,6 +31,16 @@ export default function MenuPage({ initialTab = 'all' }) {
     }
   }, [location.state, setSelectedProduct])
 
+  useEffect(() => {
+    const imgs = sections
+      .flatMap(section => section.items || [])
+      .map(i => i.img)
+      .filter(Boolean)
+      .slice(0, 20)
+    const controllers = imgs.map(src => { const img = new Image(); img.decoding = 'async'; img.src = src; return img })
+    return () => controllers.forEach(img => { img.src = '' })
+  }, [sections])
+
   const sections = useMemo(() => getSectionsForTab(activeTab), [activeTab])
 
   const renderItems = (items) => (
@@ -58,7 +68,9 @@ export default function MenuPage({ initialTab = 'all' }) {
                 src={item.img}
                 alt={lang === 'ru' ? (item.nameRu || item.name) : lang === 'en' ? (item.nameEn || item.name) : item.name}
                 className="w-full h-full object-contain bg-white transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           </div>

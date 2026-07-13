@@ -197,10 +197,10 @@ const Navbar = () => {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4">
 
         {/* Logo + Nav links grouped left */}
-        <div className="flex items-center gap-4 sm:gap-6">
-          <Link to="/" className="flex items-center gap-2 font-heading font-bold text-white text-base sm:text-xl shrink-0" onClick={() => setMenuOpen(false)}>
-            <GoatLogo size={38} animate={false} />
-            <span className="hidden min-[360px]:inline leading-none">KAFFA CUP</span>
+        <div className="flex min-w-0 items-center gap-3 sm:gap-6">
+          <Link to="/" className="flex min-w-0 items-center gap-2 font-heading font-bold text-white text-base sm:text-xl shrink-0 whitespace-nowrap" onClick={() => setMenuOpen(false)}>
+            <GoatLogo size={34} animate={false} />
+            <span className="min-w-0 truncate leading-none">KAFFA CUP</span>
           </Link>
 
           {/* Desktop nav */}
@@ -218,12 +218,17 @@ const Navbar = () => {
         <AnimatePresence>
           {searchOpen && (
             <motion.div ref={searchRef}
-              className="fixed inset-0 z-[60] flex items-start px-3 pt-20 pb-6 md:absolute md:bottom-0 md:items-center md:px-6 md:py-0"
+              className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto px-3 pt-[calc(56px+env(safe-area-inset-top)+12px)] pb-6 md:absolute md:bottom-0 md:items-center md:px-6 md:py-0"
               style={{ background: 'rgba(30,58,51,0.98)', backdropFilter: 'blur(16px)' }}
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               transition={{ duration: 0.18 }}
             >
-              <div className="w-full max-w-2xl mx-auto relative">
+              <div className="relative w-full max-w-2xl mx-auto pb-12 md:pb-0">
+                <button onClick={closeSearch} className="absolute right-0 -top-11 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors hover:bg-white/15 hover:text-white md:-top-12 md:h-10 md:w-10" aria-label={t('nav.search.close')}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
                 <div className="flex items-center gap-3 px-4 py-3 md:py-2.5 rounded-xl"
                   style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -248,7 +253,7 @@ const Navbar = () => {
                 <AnimatePresence>
                   {results.length > 0 && (
                     <motion.div
-                      className="absolute left-0 right-0 top-full mt-2 rounded-xl overflow-hidden shadow-2xl"
+                      className="absolute left-0 right-0 top-full mt-2 max-h-[calc(100svh-14rem)] overflow-y-auto rounded-xl overflow-hidden shadow-2xl"
                       style={{ background: '#1e3a33', border: '1px solid rgba(255,255,255,0.1)' }}
                       initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.15 }}
@@ -283,10 +288,6 @@ const Navbar = () => {
                   )}
                 </AnimatePresence>
               </div>
-
-              <button onClick={closeSearch} className="ml-2 md:ml-4 mt-0.5 md:mt-0 text-white/70 hover:text-white transition-colors shrink-0 rounded-full px-3 py-2 text-xs md:text-sm font-medium bg-white/10 md:bg-transparent">
-                {t('nav.search.close')}
-              </button>
             </motion.div>
           )}
         </AnimatePresence>

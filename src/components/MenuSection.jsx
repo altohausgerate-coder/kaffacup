@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import MenuCard from './MenuCard'
 import MenuGroupTabs from './MenuGroupTabs'
-import { allMenuDisplayItems, getSectionsForTab } from '../data/menuDisplay'
+import { getSectionsForTab } from '../data/menuDisplay'
 import { useApp } from '../context/AppContext'
 import { useLang } from '../context/LangContext'
 
@@ -19,10 +19,14 @@ const MenuSection = () => {
   const sections = getSectionsForTab(activeTab)
 
   useEffect(() => {
-    const imgs = allMenuDisplayItems.slice(0, 6).filter(i => i.img?.startsWith('http')).map(i => i.img)
-    const controllers = imgs.map(src => { const img = new Image(); img.src = src; return img })
+    const imgs = sections
+      .flatMap(section => section.items || [])
+      .map(i => i.img)
+      .filter(Boolean)
+      .slice(0, 20)
+    const controllers = imgs.map(src => { const img = new Image(); img.decoding = 'async'; img.src = src; return img })
     return () => controllers.forEach(img => { img.src = '' })
-  }, [])
+  }, [sections])
 
   const renderItems = (items) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
