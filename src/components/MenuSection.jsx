@@ -5,6 +5,7 @@ import MenuGroupTabs from './MenuGroupTabs'
 import { getSectionsForTab } from '../data/menuDisplay'
 import { useApp } from '../context/AppContext'
 import { useLang } from '../context/LangContext'
+import { getMenuPreloadImages } from '../utils/menuImages'
 
 const formatPrice = (item) => {
   if (item.priceK) return `S:${item.priceS} ₼ / M:${item.priceM} ₼ / K:${item.priceK} ₼`
@@ -19,19 +20,15 @@ const MenuSection = () => {
   const sections = getSectionsForTab(activeTab)
 
   useEffect(() => {
-    const imgs = sections
-      .flatMap(section => section.items || [])
-      .map(i => i.img)
-      .filter(Boolean)
-      .slice(0, 20)
+    const imgs = getMenuPreloadImages(sections, activeTab === 'all' ? 6 : 10)
     const controllers = imgs.map(src => { const img = new Image(); img.decoding = 'async'; img.src = src; return img })
     return () => controllers.forEach(img => { img.src = '' })
-  }, [sections])
+  }, [activeTab, sections])
 
-  const renderItems = (items) => (
+  const renderItems = (items, sectionIndex = 0) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {items.map((item, i) => (
-        <MenuCard key={item.id} item={item} index={i} onSelect={() => setSelectedProduct(item)} />
+        <MenuCard key={item.id} item={item} priority={sectionIndex === 0 && i < 4} onSelect={() => setSelectedProduct(item)} />
       ))}
     </div>
   )
@@ -103,7 +100,7 @@ const MenuSection = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.1 }}
           >
-            {sections.map((section) => (
+            {sections.map((section, sectionIndex) => (
               <div key={section.id} className="mb-10 sm:mb-12">
                 <div className="text-center mb-6">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-gray-800">
@@ -111,7 +108,7 @@ const MenuSection = () => {
                     {t(section.titleKey)}
                   </h3>
                 </div>
-                {section.renderAs === 'list' ? renderList(section.items) : renderItems(section.items)}
+                {section.renderAs === 'list' ? renderList(section.items) : renderItems(section.items, sectionIndex)}
               </div>
             ))}
           </motion.div>

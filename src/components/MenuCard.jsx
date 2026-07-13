@@ -1,42 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useLang } from '../context/LangContext'
+import { getMenuImageSrc } from '../utils/menuImages'
 
-const getFallbackImage = (item) => {
-  const cat = item.category || ''
-  if (cat === 'rolls') return '/images/menu/roll-kaffa.jpg'
-  if (cat === 'salads') return '/images/menu/salad-meat.png'
-  if (cat === 'sandwich') return '/images/menu/sandwich-kaffa.png'
-  if (cat === 'bowls') return '/images/menu/bowl-toyuq.jpg'
-  if (cat === 'desserts') return '/images/menu/dessert-waffle-shokoladli.png'
-  if (cat === 'coffee-hot') return '/images/menu/coffee-latte.png?v=5'
-  if (cat === 'coffee-cold') return '/images/menu/kaffa-iced-coffee.jpg?v=2'
-  if (cat === 'drinks') return '/images/menu/drinks/lemonade-strawberry.png?v=6'
-  if (cat === 'specials') return '/images/menu/specials/special-combo-1.png'
-  return '/images/qarisiq-yemek-asli.jpg'
-}
-
-const MenuCard = ({ item, index = 0, onSelect }) => {
-  const [loaded, setLoaded] = useState(false)
+const MenuCard = ({ item, priority = false, onSelect }) => {
   const [errored, setErrored] = useState(false)
   const { lang, t } = useLang()
 
   const displayName = lang === 'ru' ? (item.nameRu || item.name) : lang === 'en' ? (item.nameEn || item.name) : item.name
   const displayDesc = lang === 'ru' ? (item.descRu || item.desc) : lang === 'en' ? (item.descEn || item.desc) : item.desc
 
-  const hasImage = item.img && (item.img.startsWith('http') || item.img.startsWith('/'))
-  const imageSrc = hasImage && !errored ? item.img : getFallbackImage(item)
+  const imageSrc = getMenuImageSrc(item, errored)
   const displayPrice = item.priceK ? `S:${item.priceS}₼ / M:${item.priceM}₼ / K:${item.priceK}₼` : item.priceS ? `S:${item.priceS}₼ / M:${item.priceM || item.price}₼` : `${item.price} ₼`
 
-  const handleError = (e) => {
-    setErrored(true)
+  const handleError = () => {
+    if (!errored) setErrored(true)
   }
-
-  useEffect(() => {
-    if (!hasImage || loaded || errored) return undefined
-    const timer = window.setTimeout(() => setErrored(true), 2500)
-    return () => window.clearTimeout(timer)
-  }, [hasImage, loaded, errored])
 
   return (
     <motion.div
@@ -49,9 +28,9 @@ const MenuCard = ({ item, index = 0, onSelect }) => {
         <img src={imageSrc} alt={displayName}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           style={{ objectPosition: item.imgPosition || 'center' }}
-          onLoad={() => setLoaded(true)} onError={handleError}
-          loading="eager"
-          fetchPriority="high"
+          onError={handleError}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'low'}
           decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
         {item.popular && (

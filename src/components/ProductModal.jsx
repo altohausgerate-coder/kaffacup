@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLang } from '../context/LangContext'
+import { getMenuImageSrc } from '../utils/menuImages'
 
 const ProductModal = ({ item, onClose }) => {
   const { lang, t } = useLang()
@@ -37,13 +38,15 @@ const ProductModal = ({ item, onClose }) => {
         >
           <div className="relative">
             <div className="h-[220px] sm:h-[280px] overflow-hidden bg-gray-100 rounded-t-3xl">
-              {item.img ? (
-                <img src={item.img} alt={displayName} className="w-full h-full object-cover" style={{ objectPosition: item.imgPosition || 'center' }} loading="lazy" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-6xl" style={{ background: 'linear-gradient(135deg, #2D5F4E, #4a8a72)' }}>
-                  ☕
-                </div>
-              )}
+              <img
+                src={getMenuImageSrc(item)}
+                alt={displayName}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: item.imgPosition || 'center' }}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
             <button
               onClick={onClose}

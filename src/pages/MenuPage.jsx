@@ -7,6 +7,7 @@ import MenuGroupTabs from '../components/MenuGroupTabs'
 import { useApp } from '../context/AppContext'
 import { useLang } from '../context/LangContext'
 import { getSectionsForTab, menuGroupTabs } from '../data/menuDisplay'
+import { getMenuImageSrc, getMenuPreloadImages } from '../utils/menuImages'
 
 const formatPrice = (item) => {
   if (item.priceK) return `S:${item.priceS} ₼ / M:${item.priceM} ₼ / K:${item.priceK} ₼`
@@ -21,6 +22,7 @@ export default function MenuPage({ initialTab = 'all' }) {
   const navigate = useNavigate()
   const location = useLocation()
   const sections = useMemo(() => getSectionsForTab(activeTab), [activeTab])
+  const priorityImages = useMemo(() => getMenuPreloadImages(sections, activeTab === 'all' ? 6 : 10), [activeTab, sections])
 
   useEffect(() => {
     setActiveTab(initialTab)
@@ -33,24 +35,40 @@ export default function MenuPage({ initialTab = 'all' }) {
   }, [location.state, setSelectedProduct])
 
   useEffect(() => {
-    const imgs = sections
-      .flatMap(section => section.items || [])
-      .map(i => i.img)
-      .filter(Boolean)
-      .slice(0, 20)
-    const controllers = imgs.map(src => { const img = new Image(); img.decoding = 'async'; img.src = src; return img })
-    return () => controllers.forEach(img => { img.src = '' })
-  }, [sections])
+    const links = priorityImages.map((src) => {
+      const link = document.createElement('link')
+      link.rel = 'preload'
+      link.as = 'image'
+      link.href = src
+      link.fetchPriority = 'high'
+      link.dataset.menuPreload = 'true'
+      document.head.appendChild(link)
+      return link
+    })
+    const controllers = priorityImages.map((src) => {
+      const img = new Image()
+      img.decoding = 'async'
+      img.fetchPriority = 'high'
+      img.src = src
+      return img
+    })
+    return () => {
+      links.forEach(link => link.remove())
+      controllers.forEach(img => { img.src = '' })
+    }
+  }, [priorityImages])
 
-  const renderItems = (items) => (
+  const renderItems = (items, sectionIndex = 0) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {items.map((item, i) => (
-        <MenuCard key={item.id} item={item} index={i} onSelect={() => setSelectedProduct(item)} />
+        <MenuCard key={item.id} item={item} priority={sectionIndex === 0 && i < 4} onSelect={() => setSelectedProduct(item)} />
       ))}
     </div>
   )
 
-  const renderSpecials = (items) => (
+  const renderSpecials = (items, sectionIndex = 0) => {
+    const priority = sectionIndex === 0
+    return (
     <div>
       <div className="mb-5 text-center bg-primary/10 border border-primary/20 rounded-xl px-4 py-3">
         <p className="text-sm font-bold text-primary">{t('menu.specials.banner')}</p>
@@ -64,11 +82,11 @@ export default function MenuPage({ initialTab = 'all' }) {
           >
             <div className="w-full" style={{ aspectRatio: '1470 / 1070' }}>
               <img
-                src={item.img}
+                src={getMenuImageSrc(item)}
                 alt={lang === 'ru' ? (item.nameRu || item.name) : lang === 'en' ? (item.nameEn || item.name) : item.name}
                 className="w-full h-full object-contain bg-white transition-transform duration-500 group-hover:scale-105"
-                loading="eager"
-                fetchPriority="high"
+                loading={priority ? 'eager' : 'lazy'}
+                fetchPriority={priority ? 'high' : 'low'}
                 decoding="async"
               />
             </div>
@@ -76,7 +94,8 @@ export default function MenuPage({ initialTab = 'all' }) {
         ))}
       </div>
     </div>
-  )
+    )
+  }
 
   const renderList = (items) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -167,7 +186,7 @@ export default function MenuPage({ initialTab = 'all' }) {
             transition={{ duration: 0.18 }}
           >
             {sections.length > 0 ? (
-              sections.map((section) => (
+              sections.map((section, sectionIndex) => (
                 <section key={section.id} className="mb-10 sm:mb-12 scroll-mt-32">
                   <div className="relative text-center mb-5 border-b border-primary/10 pb-3">
                     <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-primary">
@@ -178,8 +197,8 @@ export default function MenuPage({ initialTab = 'all' }) {
                   {section.renderAs === 'list'
                     ? renderList(section.items)
                     : section.renderAs === 'specials'
-                      ? renderSpecials(section.items)
-                      : renderItems(section.items)}
+                      ? renderSpecials(section.items, sectionIndex)
+                      : renderItems(section.items, sectionIndex)}
                 </section>
               ))
             ) : (

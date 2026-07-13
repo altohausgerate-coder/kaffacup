@@ -7,6 +7,7 @@ import { useApp } from '../context/AppContext'
 import { allMenuItems } from '../data/menuData'
 import { ExpandableTabs } from './ui/expandable-tabs'
 import { Search, Briefcase, MessageCircle, ShoppingBag } from 'lucide-react'
+import { getMenuImageSrc } from '../utils/menuImages'
 
 const InstagramIcon = ({ size = 18, ...props }) => (
   <svg
@@ -261,7 +262,7 @@ const Navbar = () => {
                       {results.map((item) => (
                         <button key={item.id} onClick={() => handleResultClick(item)}
                           className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left border-b border-white/5 last:border-0">
-                          <img src={item.img} alt={getDisplayName(item)}
+                          <img src={getMenuImageSrc(item)} alt={getDisplayName(item)}
                             className="w-10 h-10 rounded-lg object-cover shrink-0"
                             onError={e => { e.target.style.display = 'none' }} />
                           <div className="flex-1 min-w-0">
