@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 import FloatingBeans from '../components/FloatingBeans'
+import ScrollReveal from '../components/ScrollReveal'
 import { useLang } from '../context/LangContext'
 import { useCustomerAuth } from '../context/CustomerAuthContext'
 
@@ -239,6 +240,7 @@ const Home = () => {
     >
       <Navbar />
       <Hero />
+      <ScrollReveal />
 
       <div className="relative">
         <FloatingBeans />

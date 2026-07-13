@@ -20,6 +20,10 @@ const translations = {
     'hero.cta.menu': 'Menyu',
     'hero.cta.delivery': 'Çatdırılma',
     'hero.cta.reviews': 'Rəylər',
+
+    // Scroll reveal (hero-dan sonra)
+    'reveal.label': 'Kaffa Cup · Sumqayıt',
+    'reveal.tagline': 'Hər fincanda bir hekayə, hər qurtumda bir xatirə',
     'hero.scroll': 'scroll',
 
     // InfoStrip
@@ -234,6 +238,9 @@ const translations = {
 
     'hero.label': 'Кофейня · Сумгайыт',
     'hero.subtitle': 'Начни каждый день с нового вкуса',
+
+    'reveal.label': 'Kaffa Cup · Сумгайыт',
+    'reveal.tagline': 'В каждой чашке — история, в каждом глотке — воспоминание',
     'hero.cta.menu': 'Меню',
     'hero.cta.delivery': 'Доставка',
     'hero.cta.reviews': 'Отзывы',
@@ -441,6 +448,9 @@ const translations = {
 
     'hero.label': 'Coffee House · Sumgait',
     'hero.subtitle': 'Start Every Day with a New Taste',
+
+    'reveal.label': 'Kaffa Cup · Sumgait',
+    'reveal.tagline': 'A story in every cup, a memory in every sip',
     'hero.cta.menu': 'Menu',
     'hero.cta.delivery': 'Delivery',
     'hero.cta.reviews': 'Reviews',
