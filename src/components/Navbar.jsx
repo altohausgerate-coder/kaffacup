@@ -78,6 +78,7 @@ const Navbar = () => {
   const location = useLocation()
   const isHome = location.pathname === '/'
   const isMenuPage = location.pathname === '/menu'
+  const isAccountPage = location.pathname === '/hesab'
 
   const categoryLabel = {
     'rolls': t('menu.cat.rolls'),
@@ -316,7 +317,7 @@ const Navbar = () => {
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
           </button>
-          {!isMenuPage && (
+          {!isMenuPage && !isAccountPage && (
             <button onClick={() => setMenuOpen(!menuOpen)} className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 p-2" aria-label="Menu" aria-expanded={menuOpen}>
               <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} />
               <motion.span className="block w-6 h-0.5 bg-white rounded" animate={menuOpen ? { opacity: 0 } : { opacity: 1 }} />

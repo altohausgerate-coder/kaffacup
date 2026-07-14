@@ -220,12 +220,12 @@ export default function CustomerPage() {
 
       <div className="max-w-lg mx-auto px-4 pt-24 sm:pt-28 pb-20">
         <button onClick={() => navigate('/')}
-          className="inline-flex min-h-10 items-center gap-2 text-xs font-semibold uppercase mb-5 sm:mb-6 transition-colors"
-          style={{ color: 'rgba(200,161,56,0.8)' }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          aria-label="Ana səhifəyə qayıt"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full mb-5 sm:mb-6 transition-colors"
+          style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(200,161,56,0.9)' }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-          Kaffa Cup
         </button>
 
         {/* Profile */}

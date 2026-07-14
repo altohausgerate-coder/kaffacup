@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /kassir
+Disallow: /hesab
+
+Sitemap: https://kaffacup.az/sitemap.xml
